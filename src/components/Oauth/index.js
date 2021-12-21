@@ -49,7 +49,7 @@ const unsplashApi = {
 		}).then(res => res.json()).then(data => data);
 	},
 	auth() {
-		debugger;
+
 		const url = new URL(window.location.href);
 		const code = url.searchParams.get('code');
 

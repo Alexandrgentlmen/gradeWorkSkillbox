@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-// import unsplashApi from '../Oauth/index';
-// 
 
-function Header({ handleSearch, auth}) {
+const ACCESS_KEY = process.env.REACT_APP_ACCESSKEY,
+	
+	REDIRECT_URL = 'http://localhost:3000/';
+const authUrl = `https://unsplash.com/oauth/authorize?client_id=${ACCESS_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code&scope=public`;
+
+function Header({ handleSearch}) {
 	const [searchValue, setSearchValue] = useState('');
 
 	return (
@@ -76,12 +79,10 @@ function Header({ handleSearch, auth}) {
 					</li>
 					<li className="sub-nav__item">
 						<a 
-							href="/onboarding/"
+							href={authUrl}
 							className="sub-nav__link sub-nav__btn" 
-							onClick={(e) => {
-									// e.preventDefault();
-									auth();
-								}}>Join</a>
+							>Join
+						</a>
 					</li>
 				</ul>
 			</nav>
