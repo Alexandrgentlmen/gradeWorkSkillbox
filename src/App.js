@@ -6,18 +6,7 @@ import Header from './components/Header/Header';
 import Cards from './components/Cards/Cards';
 import { Heading } from './components/Heading/Heading';
 import { Loader } from './components/Loader/Loader.js';
-import { createApi } from 'unsplash-js';
-import { unsplashApi } from './components/Oauth';
-
-const ACCESS_KEY = process.env.REACT_APP_ACCESSKEY,
-
-	REDIRECT_URL = 'http://localhost:3000/';
-const authUrl = `https://unsplash.com/oauth/authorize?client_id=${ACCESS_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code&scope=public`;
-const unsplash = createApi({
-	accessKey: localStorage.getItem('token') ? 'Bearer ' + localStorage.getItem('token') : ACCESS_KEY
-});
-
-window.unsplash = unsplash;
+import unsplashApi from './components/Oauth/index';
 
 const masonryOptions = {
 	fitWidth: false,
@@ -28,7 +17,6 @@ const masonryOptions = {
 
 function App() {
 	const [images, setImages] = useState([]);
-
 	const fetchImages = () => {
 		const apiRoot = "https://api.unsplash.com";
 		const accessKey = process.env.REACT_APP_ACCESSKEY;
@@ -37,10 +25,14 @@ function App() {
 			.get(`${apiRoot}/photos/random?client_id=${accessKey}&count=10`)
 			.then(res => setImages([...images, ...res.data]))
 	}
-
 	useEffect(() => {
 		fetchImages();
 	}, [])
+
+	useEffect(() => {
+		unsplashApi.auth();
+	}, [])
+
 
 
 	const handleSearch = (handleChange) => {
@@ -54,7 +46,7 @@ function App() {
 
 	return (
 		<>
-			<Header handleSearch={handleSearch} authUrl={authUrl} />
+			<Header handleSearch={handleSearch} />
 			<Heading />
 			<div className="content container">
 

@@ -49,7 +49,6 @@ const unsplashApi = {
 		}).then(res => res.json()).then(data => data);
 	},
 	auth() {
-
 		const url = new URL(window.location.href);
 		const code = url.searchParams.get('code');
 
@@ -70,16 +69,13 @@ const unsplashApi = {
 			}).then(response => response.json()).then(data => {
 				console.log(data);
 				localStorage.setItem('token', data.access_token);
-				window.location.href = REDIRECT_URL;
+
 			})
 		} else {
 
 			window.location.href = authUrl;
-
 		}
-
 	}
 }
-
 
 export default unsplashApi;
