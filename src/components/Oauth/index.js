@@ -66,11 +66,8 @@ const unsplashApi = {
 					code: code,
 					grant_type: 'authorization_code'
 				})
-			}).then(response => response.json()).then(data => {
-				console.log(data);
-				localStorage.setItem('token', data.access_token);
+			}).then(response => console.log(response.json()))
 
-			})
 		} else {
 
 			window.location.href = authUrl;
