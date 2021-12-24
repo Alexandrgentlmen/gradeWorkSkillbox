@@ -2,7 +2,7 @@ import { createApi } from 'unsplash-js';
 
 const ACCESS_KEY = process.env.REACT_APP_ACCESSKEY,
 	SECRET_KEY = process.env.REACT_APP_SECRETKEY,
-	REDIRECT_URL = 'http://localhost:3000/';
+	REDIRECT_URL = "urn:ietf:wg:oauth:2.0:oob";
 const authUrl = `https://unsplash.com/oauth/authorize?client_id=${ACCESS_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code&scope=public`;
 
 const unsplash = createApi({
@@ -66,8 +66,12 @@ const unsplashApi = {
 					code: code,
 					grant_type: 'authorization_code'
 				})
-			}).then(response => console.log(response.json()))
+			}).then(response => response.json())
+				.then(data => {
 
+					localStorage.setItem('token', data.access_token);
+
+				})
 		} else {
 
 			window.location.href = authUrl;

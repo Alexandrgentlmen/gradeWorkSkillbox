@@ -31,7 +31,7 @@ function App() {
 
 	useEffect(() => {
 		const token = localStorage.getItem('token')
-		if (token) unsplashApi.auth();
+		if (!token) unsplashApi.auth();
 	}, [])
 
 
