@@ -1,110 +1,61 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import Masonry from "react-masonry-component";
-import Header from './components/Header/Header';
-import Cards from './components/Cards/Cards';
-import { Heading } from './components/Heading/Heading';
-import { Loader } from './components/Loader/Loader.js';
-import unsplashApi from './components/Oauth/index';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-const masonryOptions = {
-	fitWidth: false,
-	columnWidth: 350,
-	gutter: 1,
-	itemSelector: ".card",
-};
+import Header from './components/Header/Header';
+import { Heading } from './components/Heading/Heading';
+import { InfiniteScrollFunc } from './components/Infinitescroll/Infinitescroll';
+import { MasonryFunc } from './components/Masonry/Masonry';
+import getPhotos from './redux/photosReducer';
 
 function App() {
-	const [images, setImages] = useState([]);
-	const fetchImages = () => {
-		const apiRoot = "https://api.unsplash.com";
-		const accessKey = process.env.REACT_APP_ACCESSKEY;
 
-		axios
-			.get(`${apiRoot}/photos/random?client_id=${accessKey}&count=10`)
-			.then(res => setImages([...images, ...res.data]))
-	}
-	useEffect(() => {
-		fetchImages();
-	}, [])
+	const dispatch = useDispatch();
+	const photos = useSelector(state => state.photos)
+
 
 	useEffect(() => {
-		const token = localStorage.getItem('token')
-		if (!token) unsplashApi.auth();
+		dispatch(getPhotos())
 	}, [])
 
-
-
-	const handleSearch = (handleChange) => {
-		const apiRoot = "https://api.unsplash.com";
-		const accessKey = process.env.REACT_APP_ACCESSKEY;
-		axios
-			.get(`${apiRoot}/search/photos?query=${handleChange}&client_id=${accessKey}`)
-			.then(res => setImages([...res.data.results]))
-
-	}
+	// useEffect(() => {
+	// 	const token = localStorage.getItem('token')
+	// 	if (!token) { unsplashApi.auth() };
+	// }, [])
 
 	return (
 		<>
-			<Header handleSearch={handleSearch} />
+			<Header />
 			<Heading />
 			<div className="content container">
 
-				<InfiniteScroll
-					dataLength={images.length}
-					next={fetchImages}
-					hasMore={true}
-					loader={<Loader />}
-				>
+				<InfiniteScrollFunc dataLength={photos.length} >
 					<div className="content__photos" data-grid-type="default">
-						<Masonry
-							className={"photo-list"}
-							elementType={"div"}
-							options={masonryOptions}
-							disableImagesLoaded={false}
-							updateOnEachImageLoad={false}
-						>
-							{
-								images.map(image => (<Cards url={image.urls.thumb} key={image.id} />))
-							}
-						</Masonry>
+						<MasonryFunc photos={photos}></MasonryFunc>
 					</div>
-				</InfiniteScroll>
+				</InfiniteScrollFunc>
 			</div>
 		</>
 	);
 }
 
-// const mapStateToProps = (state) => {
-// 	return {
-// 		editer: state
-// 	}
-// }
-
-// const mapDispatchToProps = (dispatch) => {
-// 	return {
-// 	}
-// }
-
-// export const getPhotosThunkCreater = (state = [], photo) => {
-
-// 	return (dispatch) => {
-
-// 		const apiRoot = "https://api.unsplash.com";
-// 		const accessKey = process.env.REACT_APP_ACCESSKEY;
-
-// 		axios
-// 			.get(`${apiRoot}/photos/random&client_id=${accessKey}&count=10`)
-// 			.then(res => this.state([...photo, ...res.data]))
-
-// 	}
-// }
-
-// App = connect(
-// 	mapStateToProps,
-// 	mapDispatchToProps,
-// 	{ getPhotosThunkCreater }
-// )(App);
-
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+// const [images, setImages] = useState([]);
+	// const fetchImages = () => {
+	// 	const apiRoot = "https://api.unsplash.com";
+	// 	const accessKey = process.env.REACT_APP_ACCESSKEY;
+	// 	axios
+	// 		.get(`${apiRoot}/photos/random?client_id=${accessKey}&count=10`)
+	// 		.then(res => setImages([...images, ...res.data]))
+	// }

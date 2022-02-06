@@ -11,33 +11,7 @@ const unsplash = createApi({
 
 window.unsplash = unsplash;
 
-const unsplashApi = {
-	getPhotos(page, perPage) {
-		return unsplash.photos.list({ page, perPage });
-	},
-	getFullPhoto(photoId) {
-		return unsplash.photos.get({ photoId: photoId });
-	},
-	photoUnLike(photoId) {
-		return fetch(`https://api.unsplash.com/photos/${photoId}/like`, {
-			method: 'DELETE',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json',
-				'Authorization': 'Bearer ' + localStorage.getItem('token')
-			}
-		}).then(res => res.json()).then(data => data);
-	},
-	photoLike(photoId) {
-		return fetch(`https://api.unsplash.com/photos/${photoId}/like`, {
-			method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json',
-				'Authorization': 'Bearer ' + localStorage.getItem('token')
-			}
-		}).then(res => res.json()).then(data => data);
-	},
+export const unsplashApi = {
 	getAuthUser() {
 		return fetch(`https://api.unsplash.com/me`, {
 			method: 'GET',
@@ -78,5 +52,3 @@ const unsplashApi = {
 		}
 	}
 }
-
-export default unsplashApi;
