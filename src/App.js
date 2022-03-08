@@ -1,61 +1,58 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-
-import Header from './components/Header/Header';
-import { Heading } from './components/Heading/Heading';
-import { InfiniteScrollFunc } from './components/Infinitescroll/Infinitescroll';
-import { MasonryFunc } from './components/Masonry/Masonry';
-import getPhotos from './redux/photosReducer';
+import { useSelector } from 'react-redux';
+import Masonry from "react-masonry-component";
+import InfiniteScroll from 'react-infinite-scroll-component';
+import './App.css';
+import Header from './components/Header';
+import Cards from './components/Cards';
+import { useDispatch } from 'react-redux';
+import { imagesLoad, imagesSearch } from './redux/actions';
+import Spin from './components/Spin';
 
 function App() {
-
 	const dispatch = useDispatch();
-	const photos = useSelector(state => state.photos)
-
+	const images = useSelector(state => state.imagesReducer.images);
+	const searchText = useSelector(state => state.imagesReducer.searchText);
+	console.log(images);
 
 	useEffect(() => {
-		dispatch(getPhotos())
-	}, [])
+		dispatch(imagesLoad())
+	}, []);
 
-	// useEffect(() => {
-	// 	const token = localStorage.getItem('token')
-	// 	if (!token) { unsplashApi.auth() };
-	// }, [])
+	const masonryOptions = {
+		fitWidth: false,
+		columnWidth: 350,
+		gutter: 1,
+		itemSelector: ".card",
+	};
 
+	const fetchImages = () => {
+		if (searchText) {
+			dispatch(imagesSearch(searchText))
+		} else {
+			dispatch(imagesLoad())
+		}
+
+	}
 	return (
-		<>
-			<Header />
-			<Heading />
-			<div className="content container">
-
-				<InfiniteScrollFunc dataLength={photos.length} >
-					<div className="content__photos" data-grid-type="default">
-						<MasonryFunc photos={photos}></MasonryFunc>
-					</div>
-				</InfiniteScrollFunc>
+		<div className="App">
+			<div className="wrap">
+				<Spin />
+				<Header />
+				<InfiniteScroll dataLength={images.length} next={fetchImages} hasMore={true} loader={<Spin />}>
+					<Masonry className={"photo-list"}
+						elementType={"div"}
+						options={masonryOptions}
+						disableImagesLoaded={false}
+						updateOnEachImageLoad={false}>
+						{images.map(image => (
+							<Cards url={image.url} id={image.id} totalLike={image.likes} />
+						))}
+					</Masonry>
+				</InfiniteScroll>
 			</div>
-		</>
+		</div >
 	);
 }
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-// const [images, setImages] = useState([]);
-	// const fetchImages = () => {
-	// 	const apiRoot = "https://api.unsplash.com";
-	// 	const accessKey = process.env.REACT_APP_ACCESSKEY;
-	// 	axios
-	// 		.get(`${apiRoot}/photos/random?client_id=${accessKey}&count=10`)
-	// 		.then(res => setImages([...images, ...res.data]))
-	// }

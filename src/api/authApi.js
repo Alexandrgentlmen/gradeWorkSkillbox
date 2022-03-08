@@ -25,7 +25,7 @@ export const unsplashApi = {
 	auth() {
 		// const url = new URL(window.location.href);
 		// const code = url.searchParams.get('code');
-		const code = 'S0kvHWgQjaSxewQk6ZGBn9NW7jNGO226nL3C8Ix-Bmo';
+		const code = 'DLxhl7Xnp9KjpqY49kKS2HYF4s8ItCSPtq5otP6FUwA';
 
 		if (code) {
 			return fetch('https://unsplash.com/oauth/token', {
@@ -50,5 +50,6 @@ export const unsplashApi = {
 
 			window.location.href = authUrl;
 		}
-	}
+	},
+
 }

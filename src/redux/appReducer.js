@@ -1,63 +1,37 @@
-// appReducer это редюсер который отвечает за приложение
-
-import { HIDE_ALERT, HIDE_LOADER, SHOW_ALERT, SHOW_LOADER } from "./types"
-
+import { ERROR_DISPLAY_OFF, ERROR_DISPLAY_ON, LOADER_DISPLAY_OFF, LOADER_DISPLAY_ON } from "./types";
 
 const initialState = {
 	loading: false,
-	alert: null
+	error: null,
 }
 
 export const appReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case SHOW_LOADER:
+
+		case LOADER_DISPLAY_ON:
 			return {
-				...state, loading: true
+				...state,
+				loading: true
+
 			}
-		case HIDE_LOADER:
+		case LOADER_DISPLAY_OFF:
 			return {
-				...state, loading: false
+				...state,
+				loading: false
 			}
-		case SHOW_ALERT:
+		case ERROR_DISPLAY_ON:
 			return {
-				...state, alert: action.payload
+				...state,
+				error: action.text
+
 			}
-		case HIDE_ALERT:
+		case ERROR_DISPLAY_OFF:
 			return {
-				...state, alert: null
+				...state,
+				error: null
+
 			}
-		default: return state
+		default:
+			return state;
 	}
 }
-
-export const showLoader = () => {
-	return {
-		type: SHOW_LOADER
-	}
-}
-
-export const hideLoader = () => {
-	return {
-		type: HIDE_LOADER
-	}
-}
-
-export const showAlert = (text) => {
-	return dispatch => {
-		dispatch({
-			type: SHOW_ALERT,
-			payload: text
-		})
-		setTimeout(() => {
-			dispatch(hideAlert())
-		}, 4000)
-	}
-}
-
-export const hideAlert = () => {
-	return {
-		type: HIDE_ALERT
-	}
-}
-
-

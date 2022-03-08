@@ -273,6 +273,13 @@ body {
 		cursor: default;
 	}
 
+	&__likes {
+		text-align: center;
+		font-weight: 600;
+		color: white;
+
+	}
+
 	&__photographer {
 		color: #fff;
 		max-width: calc(100% - 70px);
@@ -357,15 +364,9 @@ body {
 }
 
 .photo-list {
+	overflow: visible;
 	display: flex;
 	flex: 0 1;
 	width: 95%;
 	margin: 0 auto;
 }
-
-// .photo-item {
-// 	display: flex;
-// 	width: 300px;
-// 	box-shadow: 0 5px 10px rgba(0, 0, 0, .12);
-// 	margin: 20px 0;
-// }

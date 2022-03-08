@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { imagesSearch } from '../redux/actions';
 
 const ACCESS_KEY = process.env.REACT_APP_ACCESSKEY,
 	REDIRECT_URL = 'urn:ietf:wg:oauth:2.0:oob';
 const authUrl = `https://unsplash.com/oauth/authorize?client_id=${ACCESS_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code&scope=public`;
 
-function Header({ handleSearch}) {
+function Header() {
 	const [searchValue, setSearchValue] = useState('');
-
+	const dispatch = useDispatch();
+	const onSearch =(e) => {
+		e.preventDefault();	
+		dispatch(imagesSearch(searchValue));
+		setSearchValue('');
+	}
 	return (
 
 		<header className="header">
@@ -18,7 +25,7 @@ function Header({ handleSearch}) {
 							<path d="M23 21h3.863v-3.752h1.167a3.124 3.124 0 1 0 0-6.248H13v10zm5.863 2H11V9h7.03a5.124 5.124 0 0 1 .833 10.18V23z" fill="#fff"></path>
 						</svg>
 					</div>
-					<div className="header__logo_text">PhotoZen</div>
+					<div className="header__logo_text">PhotoEr</div>
 				</a>
 				<div className="header__search-bar">
 					<form className="search-bar" autoComplete="off">
@@ -32,16 +39,13 @@ function Header({ handleSearch}) {
 								placeholder="Search for free foto"
 								required="required"
 								type="search"
+								value={searchValue}
 								onChange= { (e) => {setSearchValue((e.target.value))}}
 							>
 							</input>
 							<button
-
 								className="search-bar__btn flex"
-								onClick={(e) => {
-									e.preventDefault();	
-									handleSearch(searchValue);
-								}}
+								onClick={onSearch}
 								type="submit"
 								id="search-action"
 								title="Search for stock photos"
@@ -77,7 +81,10 @@ function Header({ handleSearch}) {
 						</button>
 					</li>
 					<li className="sub-nav__item">
-						<a href={authUrl} className="sub-nav__link sub-nav__btn">
+						<a href={authUrl}
+						 className="sub-nav__link sub-nav__btn"
+				
+						 >
 							Join
 						</a>
 					</li>
