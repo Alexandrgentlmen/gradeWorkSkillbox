@@ -1,20 +1,20 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch,} from 'react-redux';
 import { imagesLike } from '../redux/actions';
 
 
 
-function Cards({ url, id, totalLike }) {
+function Cards({name ,photoUser, url, id, totalLike }) {
 	const dispatch = useDispatch();
-	console.log(totalLike)
+	console.log(photoUser)
 	return (	
 		<article className="card overlay">
 			<a href="\" className="card__link d-flex">
 				<img className="card__img" src={url} key={id} alt="gallery" />
 			</a>
 			<a href="/" className="card__photographer d-flex">
-				<img src="/ns-400.jpg" heigth={30} width={30} className="card__avatar" alt="foto-author" />
-				<span className="card__name">name-author</span>
+				<img src={photoUser} heigth={30} width={30} className="card__avatar" alt="foto-author" />
+				<span className="card__name">{name}</span>
 			</a>
 			<div className="card__info d-flex">
 				<a href="/" className="btn-download card__link-download">

@@ -8,6 +8,7 @@ import Cards from './components/Cards';
 import { useDispatch } from 'react-redux';
 import { imagesLoad, imagesSearch } from './redux/actions';
 import Spin from './components/Spin';
+import uniqid from 'uniqid';
 
 function App() {
 	const dispatch = useDispatch();
@@ -46,7 +47,13 @@ function App() {
 						disableImagesLoaded={false}
 						updateOnEachImageLoad={false}>
 						{images.map(image => (
-							<Cards url={image.url} id={image.id} totalLike={image.likes} />
+							// const key = uniqid();
+							<Cards
+								photoUser={image.photoUser.small}
+								url={image.url} key={uniqid()}
+								id={image.id} totalLike={image.likes}
+								name={image.name}
+							/>
 						))}
 					</Masonry>
 				</InfiniteScroll>

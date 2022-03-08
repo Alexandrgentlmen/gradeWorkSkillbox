@@ -12,7 +12,9 @@ export const imagesReducer = (state = initialState, action) => {
 				return {
 					url: res.urls.thumb,
 					id: res.id,
-					likes: res.likes
+					likes: res.likes,
+					photoUser: res.user.profile_image,
+					name: res.user.first_name,
 				}
 			})
 			return {
@@ -25,7 +27,9 @@ export const imagesReducer = (state = initialState, action) => {
 				return {
 					url: res.urls.thumb,
 					id: res.id,
-					likes: res.likes
+					likes: res.likes,
+					photoUser: res.user.profile_image,
+					name: res.user.first_name,
 				}
 			})
 			return {

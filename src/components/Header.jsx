@@ -83,7 +83,7 @@ function Header() {
 					<li className="sub-nav__item">
 						<a href={authUrl}
 						 className="sub-nav__link sub-nav__btn"
-				
+
 						 >
 							Join
 						</a>
