@@ -1,7 +1,7 @@
 import {
 	ERROR_DISPLAY_OFF, ERROR_DISPLAY_ON,
 	SEARCH_IMAGE, IMAGES_LOAD, LIKE_IMAGE,
-	LOADER_DISPLAY_OFF, LOADER_DISPLAY_ON
+	LOADER_DISPLAY_OFF, LOADER_DISPLAY_ON, UNLIKE_IMAGE
 } from "./types";
 import { imagesAPI, searchAPI } from './../api/api';
 
@@ -57,6 +57,16 @@ export const imagesLike = (id) => {
 		await imagesAPI.getLikePhoto(id);
 		dispatch({
 			type: LIKE_IMAGE,
+			id: id,
+		});
+	}
+}
+
+export const imagesUnlike = (id) => {
+	return async (dispatch) => {
+		await imagesAPI.deleteLikePhoto(id);
+		dispatch({
+			type: UNLIKE_IMAGE,
 			id: id,
 		});
 	}

@@ -9,15 +9,20 @@ import { useDispatch } from 'react-redux';
 import { imagesLoad, imagesSearch } from './redux/actions';
 import Spin from './components/Spin';
 import uniqid from 'uniqid';
+import { unsplashApi } from './api/authApi';
 
 function App() {
 	const dispatch = useDispatch();
 	const images = useSelector(state => state.imagesReducer.images);
 	const searchText = useSelector(state => state.imagesReducer.searchText);
-	console.log(images);
 
 	useEffect(() => {
 		dispatch(imagesLoad())
+	}, []);
+
+	useEffect(() => {
+		console.log('get token')
+		unsplashApi.auth()
 	}, []);
 
 	const masonryOptions = {

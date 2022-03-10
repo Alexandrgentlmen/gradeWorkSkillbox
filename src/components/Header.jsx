@@ -12,7 +12,7 @@ function Header() {
 	const onSearch =(e) => {
 		e.preventDefault();	
 		dispatch(imagesSearch(searchValue));
-		setSearchValue('');
+		
 	}
 	return (
 

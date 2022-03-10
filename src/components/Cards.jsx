@@ -44,7 +44,7 @@ function Cards({name ,photoUser, url, id, totalLike }) {
 				className="btn-like card__btn-like btn--reset"
 				onClick={ (e) =>{
 					e.preventDefault();
-
+					
 					dispatch(imagesLike(id))
 				}}
 				>

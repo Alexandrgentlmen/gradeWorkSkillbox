@@ -1,4 +1,4 @@
-import { IMAGES_LOAD, LIKE_IMAGE, SEARCH_IMAGE } from "./types"
+import { IMAGES_LOAD, LIKE_IMAGE, SEARCH_IMAGE, UNLIKE_IMAGE } from "./types"
 
 const initialState = {
 	images: [],
@@ -23,6 +23,7 @@ export const imagesReducer = (state = initialState, action) => {
 			}
 
 		case SEARCH_IMAGE:
+
 			const imagesSearch = action.imagesData.map(res => {
 				return {
 					url: res.urls.thumb,
@@ -33,12 +34,19 @@ export const imagesReducer = (state = initialState, action) => {
 				}
 			})
 			return {
-				...state,
-				images: [...imagesSearch],
+
+				images: [...state.images, ...imagesSearch],
 				searchText: action.searchText
 			}
 
 		case LIKE_IMAGE:
+
+			return {
+				...state,
+				id: action.id
+			}
+
+		case UNLIKE_IMAGE:
 
 			return {
 				...state,
