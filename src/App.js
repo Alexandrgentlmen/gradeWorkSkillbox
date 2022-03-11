@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Masonry from "react-masonry-component";
 import InfiniteScroll from 'react-infinite-scroll-component';
+import uniqid from 'uniqid';
 import './App.css';
 import Header from './components/Header';
 import Cards from './components/Cards';
-import { useDispatch } from 'react-redux';
 import { imagesLoad, imagesSearch } from './redux/actions';
 import Spin from './components/Spin';
-import uniqid from 'uniqid';
-import { unsplashApi } from './api/authApi';
+
 
 function App() {
 	const dispatch = useDispatch();
@@ -18,11 +17,6 @@ function App() {
 
 	useEffect(() => {
 		dispatch(imagesLoad())
-	}, []);
-
-	useEffect(() => {
-		console.log('get token')
-		unsplashApi.auth()
 	}, []);
 
 	const masonryOptions = {

@@ -1,4 +1,5 @@
 import * as axios from "axios";
+import { unsplashApi } from './authApi';
 
 
 const apiRoot = "https://api.unsplash.com";
@@ -11,19 +12,23 @@ export const imagesAPI = {
 	},
 
 	getLikePhoto(id) {
-
+		unsplashApi.auth();
 		return fetch(`${apiRoot}/photos/${id}/like`, {
 			method: 'POST',
 			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
 				'Authorization': 'Bearer ' + localStorage.getItem('token')
 			},
 		})
 	},
 	deleteLikePhoto(id) {
-
+		unsplashApi.auth();
 		return fetch(`${apiRoot}/photos/${id}/like`, {
 			method: 'DELETE',
 			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
 				'Authorization': 'Bearer ' + localStorage.getItem('token')
 			},
 		})
