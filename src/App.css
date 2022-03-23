@@ -1,27 +1,21 @@
-.App {
-	scroll-behavior: auto;
-	overflow: visible;
-  font-size: 18px;
-}
+
 .wrap {
+	font-size: 18px;
 	overflow: visible;
   position: relative;
   max-width: 1200px;
-  margin: 140px auto 0;
+  margin: 70px auto 0;
 
 }
-.card {
-  display: flex;
-  /* padding: 20px; */
-  /* border: 1px solid #EDEEED; */
-  /* box-shadow: 0 0 0 5px rgba(0,0,0,0.03); */
+/* .card {
+ 
   flex-basis: calc(33.333% - 40px);
   flex-grow: 1;
   flex-shrink: 0;
   margin: 0 20px 20px 20px;
   background: white;
   position: relative;
-}
+} */
 /* .card-image {
   display: flex;
   flex-direction: column;

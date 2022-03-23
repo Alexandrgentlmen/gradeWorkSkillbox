@@ -6,7 +6,7 @@ import { imagesLike } from '../redux/actions';
 
 function Cards({name ,photoUser, url, id, totalLike }) {
 	const dispatch = useDispatch();
-	console.log(photoUser)
+
 	return (	
 		<article className="card overlay">
 			<a href="\" className="card__link d-flex">

@@ -23,9 +23,9 @@ export const unsplashApi = {
 		}).then(res => res.json()).then(data => data);
 	},
 	auth() {
-		// const url = new URL(window.location.href);
-		// const code = url.searchParams.get('code');
-		const code = '_Hc5rQPf7rBMUFyDogUKssBuO-5NTdtJvVIle-Nizbw';
+		const url = new URL(window.location.href);
+		const code = url.searchParams.get('code');
+		// const code = 'bx7zNHSCPFeVSIk7mtpgp1MSSXR5ZIn8LF2-fGLLs3s';
 
 		if (code) {
 			return fetch('https://unsplash.com/oauth/token', {

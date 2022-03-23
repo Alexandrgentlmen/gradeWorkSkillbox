@@ -19,7 +19,8 @@ export const imagesReducer = (state = initialState, action) => {
 			})
 			return {
 				...state,
-				images: [...state.images, ...images]
+				images: [...state.images, ...images],
+
 			}
 
 		case SEARCH_IMAGE:
@@ -36,7 +37,7 @@ export const imagesReducer = (state = initialState, action) => {
 			return {
 
 				images: [...state.images, ...imagesSearch],
-				searchText: action.searchText
+				searchText: action.searchText,
 			}
 
 		case LIKE_IMAGE:
