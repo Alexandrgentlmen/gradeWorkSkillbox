@@ -15,6 +15,8 @@ export const loaderOff = () => ({ type: LOADER_DISPLAY_OFF })
 export const errorOn = (text) => ({ type: ERROR_DISPLAY_ON, text })
 export const errorOff = () => ({ type: ERROR_DISPLAY_OFF })
 export const isSearching = () => ({ type: IS_SEARCHING })
+export const changePage = () => ({ type: CHANGE_CURRENT_PAGE })
+
 export const loadUser = () => {
 	return async (dispatch) => {
 		const userData = await unsplashApi.getAuthUser();
@@ -29,13 +31,6 @@ export const loadUser = () => {
 		}
 	}
 }
-
-export const changePage = () => {
-	return {
-		type: CHANGE_CURRENT_PAGE
-	}
-}
-
 
 export const imagesLoad = (text, num) => {
 	if (!text) {
@@ -67,9 +62,8 @@ export const imagesLoad = (text, num) => {
 							type: RESET_SEARCH_IMAGE,
 							imagesData: imagesData.data.results,
 							searchText: text,
-
 						});
-						dispatch(changePage());
+
 						dispatch(loaderOff());
 					}, 900)
 				} else {
@@ -80,7 +74,7 @@ export const imagesLoad = (text, num) => {
 							searchText: text,
 
 						});
-						dispatch(changePage());
+
 						dispatch(loaderOff());
 					}, 900)
 				}

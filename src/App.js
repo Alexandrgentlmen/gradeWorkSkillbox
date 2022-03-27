@@ -32,8 +32,13 @@ function App() {
 	}, []);
 
 	useEffect(() => {
-		dispatch(imagesLoad());
-	}, [searchText, pageNumber])
+		if (searchText) {
+			dispatch(imagesLoad());
+		} else {
+			dispatch(imagesLoad(searchText, pageNumber));
+		}
+	}, [searchText, pageNumber]);
+
 
 	const fetchImages = () => {
 		dispatch(changePage());

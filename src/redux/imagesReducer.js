@@ -20,23 +20,24 @@ export const imagesReducer = (state = initialState, action) => {
 				}
 			})
 			return {
-
 				...state,
 				images: [...state.images, ...images],
-
 			}
 
-		case RESET_SEARCH_IMAGE: {
-			return action.imagesData.map(res => ({
-
-				url: res.urls.thumb,
-				id: res.id,
-				likes: res.likes,
-				photoUser: res.user.profile_image,
-				name: res.user.first_name,
-
-			}))
-		}
+		case RESET_SEARCH_IMAGE:
+			const imagesReset = action.imagesData.map(res => {
+				return {
+					url: res.urls.thumb,
+					id: res.id,
+					likes: res.likes,
+					photoUser: res.user.profile_image,
+					name: res.user.first_name,
+				}
+			})
+			return {
+				images: [...imagesReset],
+				searchText: action.searchText,
+			}
 
 		case SEARCH_IMAGE: {
 
