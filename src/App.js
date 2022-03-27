@@ -6,7 +6,7 @@ import uniqid from 'uniqid';
 import './App.css';
 import Header from './components/Header';
 import Cards from './components/Cards';
-import { imagesLoad, imagesSearch, loadUser } from './redux/actions';
+import { changePage, imagesLoad } from './redux/actions';
 import Spin from './components/Spin';
 import { User } from './components/User';
 import { unsplashApi } from './api/authApi';
@@ -15,17 +15,9 @@ import { unsplashApi } from './api/authApi';
 function App() {
 	const dispatch = useDispatch();
 	const images = useSelector(state => state.imagesReducer.images);
+	const pageNumber = useSelector(state => state.imagesReducer.pageNumber);
 	const user = useSelector(state => state.userReducer.user);
 	const searchText = useSelector(state => state.imagesReducer.searchText);
-
-	useEffect(() => {
-		const access_token = localStorage.getItem('token');
-		access_token ? unsplashApi.getAuthUser() : unsplashApi.auth();
-	}, [dispatch]);
-
-	useEffect(() => {
-		dispatch(imagesLoad())
-	}, [dispatch])
 
 	const masonryOptions = {
 		fitWidth: false,
@@ -34,8 +26,17 @@ function App() {
 		itemSelector: ".card",
 	};
 
+	useEffect(() => {
+		const access_token = localStorage.getItem('token');
+		access_token ? unsplashApi.getAuthUser() : unsplashApi.auth();
+	}, []);
+
+	useEffect(() => {
+		dispatch(imagesLoad());
+	}, [searchText, pageNumber])
+
 	const fetchImages = () => {
-		(!searchText) ? dispatch(imagesLoad()) : dispatch(imagesSearch(searchText))
+		dispatch(changePage());
 	}
 
 

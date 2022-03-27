@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { imagesSearch } from '../redux/actions';
+import { imagesLoad} from '../redux/actions';
 const ACCESS_KEY = process.env.REACT_APP_ACCESSKEY,
 	REDIRECT_URL = "urn:ietf:wg:oauth:2.0:oob";
 const authUrl = `https://unsplash.com/oauth/authorize?client_id=${ACCESS_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code&scope=public`;
-
 
 function Header() {
 	const [searchValue, setSearchValue] = useState('');
 	const dispatch = useDispatch();
 	const onSearch =(e) => {
 		e.preventDefault();
-	dispatch(imagesSearch(searchValue));
+	dispatch(imagesLoad(searchValue));
 	
 	}
 	return (

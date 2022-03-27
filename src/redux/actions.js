@@ -2,7 +2,10 @@ import {
 	ERROR_DISPLAY_OFF, ERROR_DISPLAY_ON,
 	SEARCH_IMAGE, IMAGES_LOAD, LIKE_IMAGE,
 	LOADER_DISPLAY_OFF, LOADER_DISPLAY_ON, UNLIKE_IMAGE,
-	LOAD_USER
+	LOAD_USER,
+	CHANGE_CURRENT_PAGE,
+	RESET_SEARCH_IMAGE,
+	IS_SEARCHING
 } from "./types";
 import { imagesAPI, searchAPI } from './../api/api';
 import { unsplashApi } from '../api/authApi'
@@ -11,7 +14,7 @@ export const loaderOn = () => ({ type: LOADER_DISPLAY_ON })
 export const loaderOff = () => ({ type: LOADER_DISPLAY_OFF })
 export const errorOn = (text) => ({ type: ERROR_DISPLAY_ON, text })
 export const errorOff = () => ({ type: ERROR_DISPLAY_OFF })
-
+export const isSearching = () => ({ type: IS_SEARCHING })
 export const loadUser = () => {
 	return async (dispatch) => {
 		const userData = await unsplashApi.getAuthUser();
@@ -26,50 +29,93 @@ export const loadUser = () => {
 		}
 	}
 }
-export const imagesLoad = () => {
-	return async (dispatch) => {
-		try {
-			dispatch(loaderOn());
-			const imagesData = await imagesAPI.getPhotoData();
 
-			console.log('imagesLoad', imagesData);
-			setTimeout(() => {
-				dispatch({
-					type: IMAGES_LOAD,
-					imagesData: imagesData.data,
-
-				});
-				dispatch(loaderOff());
-			}, 900)
-
-		} catch (err) {
-			dispatch(errorOn('Ошибка в запросе!'));
-			dispatch(loaderOff());
-		}
+export const changePage = () => {
+	return {
+		type: CHANGE_CURRENT_PAGE
 	}
 }
 
-export const imagesSearch = (text) => {
-	return async (dispatch) => {
-		try {
-			dispatch(loaderOn());
 
-			const imagesData = await searchAPI.searching(text);
-			console.log('imageSearch', imagesData);
-			setTimeout(() => {
-				dispatch({
-					type: SEARCH_IMAGE,
-					imagesData: imagesData.data.results,
-					searchText: text
-				});
+export const imagesLoad = (text, num) => {
+	if (!text) {
+		return async (dispatch) => {
+			try {
+				dispatch(loaderOn());
+				const imagesData = await imagesAPI.getPhotoData();
+
+				setTimeout(() => {
+					dispatch({
+						type: IMAGES_LOAD,
+						imagesData: imagesData.data,
+					});
+					dispatch(loaderOff());
+				}, 900)
+			} catch (err) {
+				dispatch(errorOn('Ошибка в запросе!'));
 				dispatch(loaderOff());
-			}, 900)
-		} catch (err) {
-			dispatch(errorOn('Ошибка в запросе!'));
-			dispatch(loaderOff());
+			}
 		}
+	} else {
+		return async (dispatch) => {
+			try {
+				dispatch(loaderOn());
+				const imagesData = await searchAPI.searching(text, num);
+				if (num === 1) {
+					setTimeout(() => {
+						dispatch({
+							type: RESET_SEARCH_IMAGE,
+							imagesData: imagesData.data.results,
+							searchText: text,
+
+						});
+						dispatch(changePage());
+						dispatch(loaderOff());
+					}, 900)
+				} else {
+					setTimeout(() => {
+						dispatch({
+							type: SEARCH_IMAGE,
+							imagesData: imagesData.data.results,
+							searchText: text,
+
+						});
+						dispatch(changePage());
+						dispatch(loaderOff());
+					}, 900)
+				}
+
+			} catch (err) {
+				dispatch(errorOn('Ошибка в запросе!'));
+				dispatch(loaderOff());
+			}
+		}
+
 	}
+
 }
+
+// export const imagesSearch = (text, num) => {
+// 	return async (dispatch) => {
+// 		try {
+// 			dispatch(loaderOn());
+// 			const imagesData = await searchAPI.searching(text, num);
+// 			console.log('imageSearch', imagesData);
+// 			setTimeout(() => {
+// 				dispatch({
+// 					type: SEARCH_IMAGE,
+// 					imagesData: imagesData.data.results,
+// 					searchText: text,
+
+// 				});
+// 				dispatch(loaderOff());
+// 			}, 900)
+// 		} catch (err) {
+// 			dispatch(errorOn('Ошибка в запросе!'));
+// 			dispatch(loaderOff());
+// 		}
+// 	}
+// }
 
 export const imagesLike = (id) => {
 	return async (dispatch) => {
