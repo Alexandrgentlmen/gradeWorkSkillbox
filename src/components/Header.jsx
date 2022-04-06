@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { imagesLoad} from '../redux/actions';
+import { Link } from 'react-router-dom';
+import { changePage, imagesLoad} from '../redux/actions';
 const ACCESS_KEY = process.env.REACT_APP_ACCESSKEY,
 	REDIRECT_URL = "urn:ietf:wg:oauth:2.0:oob";
 const authUrl = `https://unsplash.com/oauth/authorize?client_id=${ACCESS_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code&scope=public`;
@@ -10,7 +11,8 @@ function Header() {
 	const dispatch = useDispatch();
 	const onSearch =(e) => {
 		e.preventDefault();
-	dispatch(imagesLoad(searchValue));
+		dispatch(changePage(0));
+		dispatch(imagesLoad(searchValue));
 	
 	}
 	return (
@@ -39,7 +41,10 @@ function Header() {
 								required="required"
 								type="search"
 								value={searchValue}
-								onChange= { (e) => {setSearchValue((e.target.value))}}
+								onChange= { 
+									(e) => {
+										setSearchValue((e.target.value))
+									}}
 							>
 							</input>
 							<button
@@ -80,17 +85,12 @@ function Header() {
 						</button>
 					</li>
 					<li className="sub-nav__item">
-						<a href={authUrl}
+						<Link to={authUrl}
 						className="sub-nav__link sub-nav__btn"
-						
-						// onClick={(e)=>{
-						// 	e.preventDefault();
-						// 	unsplashApi.auth();
-						// 	dispatch(loadUser())
-						// }}
+
 						 >
 							Join
-						</a>
+						</Link>
 					</li>
 				</ul>
 			</nav>

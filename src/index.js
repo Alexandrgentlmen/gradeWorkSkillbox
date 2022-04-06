@@ -8,6 +8,7 @@ import './settings.scss';
 import './index.scss';
 import { Provider } from 'react-redux';
 import { rootReducer } from './redux/rootReducer';
+import { BrowserRouter } from 'react-router-dom';
 
 
 const store = createStore(rootReducer, compose(
@@ -19,9 +20,11 @@ const store = createStore(rootReducer, compose(
 
 render(
 	<React.StrictMode>
-		<Provider store={store}>
-			<App />
-		</Provider>
+		<BrowserRouter>
+			<Provider store={store}>
+				<App />
+			</Provider>
+		</BrowserRouter>
 	</React.StrictMode>,
 	document.getElementById('root')
 );

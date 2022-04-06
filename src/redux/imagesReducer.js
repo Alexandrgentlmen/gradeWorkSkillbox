@@ -37,32 +37,49 @@ export const imagesReducer = (state = initialState, action) => {
 			return {
 				images: [...imagesReset],
 				searchText: action.searchText,
+				pageNumber: action.pageNumber,
 			}
 
 		case SEARCH_IMAGE: {
 
-			action.imagesData.forEach(res => state.images.push(
-				{
+			const imagesSearch = action.imagesData.map(res => {
+				return {
 					url: res.urls.thumb,
 					id: res.id,
 					likes: res.likes,
 					photoUser: res.user.profile_image,
 					name: res.user.first_name,
 				}
-			))
-			return state;
-		}
-		// images: [...state.images, ...action.imagesData.map(res => {
-		// 	return {
-		// 		url: res.urls.thumb,
-		// 		id: res.id,
-		// 		likes: res.likes,
-		// 		photoUser: res.user.profile_image,
-		// 		name: res.user.first_name,
-		// 	}
-		// })],
-		// searchText: action.searchText,
+			})
+			return {
 
+				images: [...state.images, ...imagesSearch],
+				searchText: action.searchText,
+				pageNumber: action.pageNumbers
+			}
+
+			// 	action.imagesData.forEach(res => state.images.push(
+			// 		{
+			// 			url: res.urls.thumb,
+			// 			id: res.id,
+			// 			likes: res.likes,
+			// 			photoUser: res.user.profile_image,
+			// 			name: res.user.first_name,
+			// 		}
+			// 	))
+			// 	return state;
+			// }
+			// images: [...state.images, ...action.imagesData.map(res => {
+			// 	return {
+			// 		url: res.urls.thumb,
+			// 		id: res.id,
+			// 		likes: res.likes,
+			// 		photoUser: res.user.profile_image,
+			// 		name: res.user.first_name,
+			// 	}
+			// })],
+			// searchText: action.searchText,
+		}
 
 		case CHANGE_CURRENT_PAGE: {
 			return { ...state, pageNumber: state.pageNumber + 1 }
