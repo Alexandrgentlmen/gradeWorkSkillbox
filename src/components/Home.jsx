@@ -32,18 +32,19 @@ function Home() {
 
 	useEffect(() => {
 		if (!searchText) {
+			console.log('dispatchLoad')
 			dispatch(imagesLoad());
 		} else {
+			console.log('dispatchSearch')
+			console.log('searchText, pageNumber:', searchText, pageNumber)
 			dispatch(imagesLoad(searchText, pageNumber));
 		}
 	}, [searchText, pageNumber,dispatch]);
 
 	const fetchImages = () => {
-		dispatch(changePage());
+		dispatch(changePage(pageNumber));
 	}
 
-
-	console.log('user1', user)
 	return (
 				<>
 					<User user={user} />

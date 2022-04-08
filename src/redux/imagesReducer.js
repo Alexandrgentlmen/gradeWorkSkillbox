@@ -6,11 +6,11 @@ const initialState = {
 	searchText: '',
 	isSearching: false,
 }
-
 export const imagesReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case IMAGES_LOAD:
 			const images = action.imagesData.map(res => {
+
 				return {
 					url: res.urls.thumb,
 					id: res.id,
@@ -35,9 +35,9 @@ export const imagesReducer = (state = initialState, action) => {
 				}
 			})
 			return {
+				...state,
 				images: [...imagesReset],
-				searchText: action.searchText,
-				pageNumber: action.pageNumber,
+
 			}
 
 		case SEARCH_IMAGE: {
@@ -52,10 +52,9 @@ export const imagesReducer = (state = initialState, action) => {
 				}
 			})
 			return {
-
+				...state,
 				images: [...state.images, ...imagesSearch],
-				searchText: action.searchText,
-				pageNumber: action.pageNumbers
+
 			}
 
 			// 	action.imagesData.forEach(res => state.images.push(
@@ -82,7 +81,10 @@ export const imagesReducer = (state = initialState, action) => {
 		}
 
 		case CHANGE_CURRENT_PAGE: {
-			return { ...state, pageNumber: state.pageNumber + 1 }
+			return {
+				...state,
+				pageNumber: state.pageNumber + 1
+			}
 		}
 
 		case IS_SEARCHING: {

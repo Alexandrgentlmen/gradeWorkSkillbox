@@ -9,6 +9,7 @@ const authUrl = `https://unsplash.com/oauth/authorize?client_id=${ACCESS_KEY}&re
 function Header() {
 	const [searchValue, setSearchValue] = useState('');
 	const dispatch = useDispatch();
+
 	const onSearch =(e) => {
 		e.preventDefault();
 		dispatch(changePage(0));
@@ -19,7 +20,7 @@ function Header() {
 
 		<header className="header">
 			<nav className="header__nav-bar flex container">
-				<a className="header__logo" href="/" title="Free Stock Foto">
+				<Link className="header__logo" to="/" title="Photer Foto">
 					<div className="header__logo_img">
 						<svg xmlns="http://www.w3.org/2000/svg" width={32} height={32} viewBox="0 0 32 32">
 							<path d="M2 0h28a2 2 0 0 1 2 2v28a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" fill="#05A081"></path>
@@ -27,7 +28,7 @@ function Header() {
 						</svg>
 					</div>
 					<div className="header__logo_text">PhotoEr</div>
-				</a>
+				</Link>
 				<div className="header__search-bar">
 					<form className="search-bar" autoComplete="off">
 						<div className="search-bar__container">

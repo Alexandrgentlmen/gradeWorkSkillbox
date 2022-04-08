@@ -15,7 +15,7 @@ export const loaderOff = () => ({ type: LOADER_DISPLAY_OFF })
 export const errorOn = (text) => ({ type: ERROR_DISPLAY_ON, text })
 export const errorOff = () => ({ type: ERROR_DISPLAY_OFF })
 export const isSearching = () => ({ type: IS_SEARCHING })
-export const changePage = (num) => ({ type: CHANGE_CURRENT_PAGE, num })
+export const changePage = (pageNumber) => ({ type: CHANGE_CURRENT_PAGE, pageNumber })
 
 export const loadUser = () => {
 	return async (dispatch) => {
@@ -32,7 +32,7 @@ export const loadUser = () => {
 	}
 }
 
-export const imagesLoad = (text, num) => {
+export const imagesLoad = (text, pageNumber) => {
 	if (!text) {
 		return async (dispatch) => {
 			try {
@@ -43,6 +43,8 @@ export const imagesLoad = (text, num) => {
 					dispatch({
 						type: IMAGES_LOAD,
 						imagesData: imagesData.data,
+						searchText: '',
+
 					});
 					dispatch(loaderOff());
 				}, 900)
@@ -56,14 +58,14 @@ export const imagesLoad = (text, num) => {
 			try {
 				dispatch(loaderOn());
 
-				const imagesData = await searchAPI.searching(text, num);
-				if (num === 1) {
+				const imagesData = await searchAPI.searching(text, pageNumber);
+				if (pageNumber === 1) {
 					setTimeout(() => {
 						dispatch({
 							type: RESET_SEARCH_IMAGE,
 							imagesData: imagesData.data.results,
 							searchText: text,
-							pageNumber: num,
+							pageNumber: pageNumber,
 						});
 						dispatch(loaderOff());
 					}, 900)
@@ -73,7 +75,7 @@ export const imagesLoad = (text, num) => {
 							type: SEARCH_IMAGE,
 							imagesData: imagesData.data.results,
 							searchText: text,
-							pageNumber: num,
+							pageNumber: pageNumber,
 						});
 						dispatch(loaderOff());
 					}, 900)
