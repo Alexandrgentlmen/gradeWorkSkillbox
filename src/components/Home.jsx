@@ -35,9 +35,11 @@ function Home() {
 			console.log('dispatchLoad')
 			dispatch(imagesLoad());
 		} else {
-			console.log('dispatchSearch')
-			console.log('searchText, pageNumber:', searchText, pageNumber)
-			dispatch(imagesLoad(searchText, pageNumber));
+		
+			console.log('searchText, pageNumber:', searchText, pageNumber);
+			if (pageNumber !== 1) {
+				dispatch(imagesLoad(searchText, pageNumber));
+			}
 		}
 	}, [searchText, pageNumber,dispatch]);
 

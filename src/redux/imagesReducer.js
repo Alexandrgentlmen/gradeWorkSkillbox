@@ -1,4 +1,4 @@
-import { IMAGES_LOAD, LIKE_IMAGE, SEARCH_IMAGE, CHANGE_CURRENT_PAGE, UNLIKE_IMAGE, RESET_SEARCH_IMAGE, IS_SEARCHING } from "./types"
+import { IMAGES_LOAD, LIKE_IMAGE, SEARCH_IMAGE, CHANGE_CURRENT_PAGE, UNLIKE_IMAGE, RESET_SEARCH_IMAGE, IS_SEARCHING, CHANGE_SEARCH_TEXT, RESET_SEARCH_PAGE } from "./types"
 
 const initialState = {
 	images: [],
@@ -79,11 +79,24 @@ export const imagesReducer = (state = initialState, action) => {
 			// })],
 			// searchText: action.searchText,
 		}
+		case CHANGE_SEARCH_TEXT: {
+			return {
+				...state,
+				searchText: action.text
+			}
+		}
 
 		case CHANGE_CURRENT_PAGE: {
 			return {
 				...state,
 				pageNumber: state.pageNumber + 1
+			}
+		}
+
+		case RESET_SEARCH_PAGE: {
+			return {
+				...state,
+				pageNumber: 1
 			}
 		}
 

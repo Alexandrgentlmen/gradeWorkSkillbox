@@ -5,7 +5,9 @@ import {
 	LOAD_USER,
 	CHANGE_CURRENT_PAGE,
 	RESET_SEARCH_IMAGE,
-	IS_SEARCHING
+	IS_SEARCHING,
+	CHANGE_SEARCH_TEXT,
+	RESET_SEARCH_PAGE
 } from "./types";
 import { imagesAPI, searchAPI } from './../api/api';
 import { unsplashApi } from '../api/authApi'
@@ -16,6 +18,8 @@ export const errorOn = (text) => ({ type: ERROR_DISPLAY_ON, text })
 export const errorOff = () => ({ type: ERROR_DISPLAY_OFF })
 export const isSearching = () => ({ type: IS_SEARCHING })
 export const changePage = (pageNumber) => ({ type: CHANGE_CURRENT_PAGE, pageNumber })
+export const changeSearchText = (text) => ({ type: CHANGE_SEARCH_TEXT, text })
+export const resetSerchPage = () => ({ type: RESET_SEARCH_PAGE })
 
 export const loadUser = () => {
 	return async (dispatch) => {

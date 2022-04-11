@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { changePage, imagesLoad} from '../redux/actions';
+import { changePage, changeSearchText, imagesLoad, resetSerchPage} from '../redux/actions';
 const ACCESS_KEY = process.env.REACT_APP_ACCESSKEY,
 	REDIRECT_URL = "urn:ietf:wg:oauth:2.0:oob";
 const authUrl = `https://unsplash.com/oauth/authorize?client_id=${ACCESS_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code&scope=public`;
@@ -9,11 +9,13 @@ const authUrl = `https://unsplash.com/oauth/authorize?client_id=${ACCESS_KEY}&re
 function Header() {
 	const [searchValue, setSearchValue] = useState('');
 	const dispatch = useDispatch();
-
+	const pageNumber = useSelector(state => state.imagesReducer.pageNumber);
+	
 	const onSearch =(e) => {
 		e.preventDefault();
-		dispatch(changePage(0));
-		dispatch(imagesLoad(searchValue));
+		dispatch(resetSerchPage());
+		dispatch(changeSearchText(searchValue));
+		dispatch(imagesLoad(searchValue,pageNumber));
 	
 	}
 	return (
