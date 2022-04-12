@@ -25,10 +25,10 @@ function Home() {
 		itemSelector: ".card",
 	};
 
-	useEffect(() => {
-		const access_token = localStorage.getItem('token');
-		access_token ? unsplashApi.getAuthUser() : unsplashApi.auth();
-	}, []);
+	// useEffect(() => {
+	// 	const access_token = localStorage.getItem('token');
+	// 	access_token ? unsplashApi.getAuthUser() : unsplashApi.auth();
+	// }, []);
 
 	useEffect(() => {
 		if (!searchText) {

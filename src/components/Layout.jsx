@@ -6,7 +6,6 @@ import Header from './Header';
 const Layout = () => {
 	return (
 			<>
-			
 			<Header />
 
 			<main className="wrap">

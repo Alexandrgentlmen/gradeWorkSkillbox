@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { changePage, changeSearchText, imagesLoad, resetSerchPage} from '../redux/actions';
-const ACCESS_KEY = process.env.REACT_APP_ACCESSKEY,
-	REDIRECT_URL = "urn:ietf:wg:oauth:2.0:oob";
-const authUrl = `https://unsplash.com/oauth/authorize?client_id=${ACCESS_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code&scope=public`;
+// const ACCESS_KEY = process.env.REACT_APP_ACCESSKEY,
+// 	REDIRECT_URL = "urn:ietf:wg:oauth:2.0:oob";
+// const authUrl = `https://unsplash.com/oauth/authorize?client_id=${ACCESS_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code&scope=public`;
 
 function Header() {
 	const [searchValue, setSearchValue] = useState('');
@@ -88,7 +88,7 @@ function Header() {
 						</button>
 					</li>
 					<li className="sub-nav__item">
-						<Link to={authUrl}
+						<Link to='/auth'
 						className="sub-nav__link sub-nav__btn"
 
 						 >

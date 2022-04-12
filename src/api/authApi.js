@@ -3,7 +3,7 @@ import { createApi } from 'unsplash-js';
 const ACCESS_KEY = process.env.REACT_APP_ACCESSKEY,
 	SECRET_KEY = process.env.REACT_APP_SECRETKEY,
 	REDIRECT_URL = "urn:ietf:wg:oauth:2.0:oob";
-const authUrl = `https://unsplash.com/oauth/authorize?client_id=${ACCESS_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code&scope=public`;
+const authUrl = `https://unsplash.com/oauth/authorize?client_id=${ACCESS_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code&scope=public+read_user+write_user+write_likes`;
 
 const unsplash = createApi({
 	accessKey: localStorage.getItem('token') ? 'Bearer ' + localStorage.getItem('token') : ACCESS_KEY
@@ -25,8 +25,8 @@ export const unsplashApi = {
 	auth() {
 		const url = new URL(window.location.href);
 		const code = url.searchParams.get('code');
-		// const code = 'bx7zNHSCPFeVSIk7mtpgp1MSSXR5ZIn8LF2-fGLLs3s';
-
+		console.log(url);
+		console.log(code);
 		if (code) {
 			return fetch('https://unsplash.com/oauth/token', {
 				method: 'POST',
@@ -47,7 +47,7 @@ export const unsplashApi = {
 
 			})
 		} else {
-			window.location.href = authUrl;
+			// window.location.href = authUrl;
 		}
 	},
 
