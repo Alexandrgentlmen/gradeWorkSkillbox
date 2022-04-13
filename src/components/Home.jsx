@@ -32,7 +32,6 @@ function Home() {
 
 	useEffect(() => {
 		if (!searchText) {
-			console.log('dispatchLoad')
 			dispatch(imagesLoad());
 		} else {
 			if (pageNumber !== 1) {

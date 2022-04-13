@@ -7,13 +7,10 @@ export const RedirectAuthPage = () => {
 	const location = useLocation();
 	const fromPage = location.state?.from.pathname || '/';
 	unsplashApi.auth();
-	const access_token = localStorage.getItem('token');	
 
-	useEffect(()=> {
-		if(access_token) {
-			navigate(fromPage, {replace: true});
-		}
-	})
+	useEffect(()=> {	
+			navigate(fromPage, {replace: true})
+	},[fromPage, navigate])
 
 	return (
 		<></>

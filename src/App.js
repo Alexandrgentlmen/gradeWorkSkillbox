@@ -23,7 +23,7 @@ function App() {
 				}>
 
 					<Route exact index element={<Home />} />
-					<Route path="/auth" element={<RedirectAuthPage />} />
+					<Route path="auth" element={<RedirectAuthPage />} />
 					<Route path="*" element={<NotFound />} />
 				</Route>
 
