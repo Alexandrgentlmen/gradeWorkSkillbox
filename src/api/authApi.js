@@ -47,7 +47,7 @@ export const unsplashApi = {
 
 			})
 		} else {
-			// window.location.href = authUrl;
+			window.location.href = authUrl;
 		}
 	},
 

@@ -9,31 +9,28 @@ import Spin from './components/Spin';
 import { RedirectAuthPage } from './components/RedirectAuthPage';
 import { RequireAuth } from './hoc/RequireAuth';
 
-function App() {
+// function App() {
 
-	return (
-		<div className="App">
-			<Spin />
-			<Routes>
+// 	return (
+// 		<div className="App">
+// 			<Spin />
+// 			<Routes>
 
-				<Route path="/" element={
-					<RequireAuth>
-						<Layout />
-					</RequireAuth>
-				}>
-					<Route path="/auth" element={
-						<RequireAuth>
-							<RedirectAuthPage />
-						</RequireAuth>
-					} />
-					<Route exact index element={<Home />} />
-					<Route path="*" element={<NotFound />} />
-				</Route>
+// 				<Route path="/" element={
+// 					<RequireAuth>
+// 						<Layout />
+// 					</RequireAuth>
+// 				}>
 
-			</Routes>
+// 					<Route exact index element={<Home />} />
+// 					<Route path="/auth" element={<RedirectAuthPage />} />
+// 					<Route path="*" element={<NotFound />} />
+// 				</Route>
 
-		</div >
-	);
-}
+// 			</Routes>
 
-export default App;
+// 		</div >
+// 	);
+// }
+
+// export default App;
