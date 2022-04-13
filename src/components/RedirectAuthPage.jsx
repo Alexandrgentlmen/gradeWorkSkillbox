@@ -6,10 +6,13 @@ export const RedirectAuthPage = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 	const fromPage = location.state?.from.pathname || '/';
-	unsplashApi.auth();
+	
+	useEffect(() => {
+		unsplashApi.auth();	
+	},[])
 
-	useEffect(()=> {	
-			navigate(fromPage, {replace: true})
+	useEffect(()=> {
+		navigate(fromPage, {replace: true})
 	},[fromPage, navigate])
 
 	return (
