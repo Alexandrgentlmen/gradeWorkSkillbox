@@ -35,13 +35,11 @@ function Home() {
 			console.log('dispatchLoad')
 			dispatch(imagesLoad());
 		} else {
-		
-			console.log('searchText, pageNumber:', searchText, pageNumber);
 			if (pageNumber !== 1) {
 				dispatch(imagesLoad(searchText, pageNumber));
 			}
 		}
-	}, [searchText, pageNumber,dispatch]);
+	}, [searchText, pageNumber, dispatch]);
 
 	const fetchImages = () => {
 		dispatch(changePage(pageNumber));

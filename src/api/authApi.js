@@ -23,6 +23,7 @@ export const unsplashApi = {
 		}).then(res => res.json()).then(data => data);
 	},
 	auth() {
+
 		const url = new URL(window.location.href);
 		const code = url.searchParams.get('code');
 		console.log(url);
