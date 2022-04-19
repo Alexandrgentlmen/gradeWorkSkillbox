@@ -90,13 +90,18 @@ export const imagesReducer = (state = initialState, action) => {
 			}
 		}
 
+		// let cityId = cities.find(city => city.name === searchTerm).id
+		// console.log(cityId);
+
 		case CHANGE_LIKE: {
+			const imagesList = { ...state.images }
+			const imagesID = action.id;
 
-			const likeFromUser = true;
-
+			let imageLike = imagesList.find(img => img.id === imagesID);
+			imageLike.likeFromUser = true;
 			return {
 				...state,
-				images: [...state.images, likeFromUser],
+				images: [...state.images, imageLike],
 
 			}
 		}
