@@ -22,11 +22,10 @@ export const unsplashApi = {
 			}
 		}).then(res => res.json()).then(data => data);
 	},
+
 	auth() {
 		const url = new URL(window.location.href);
 		const code = url.searchParams.get('code');
-		console.log(url);
-		console.log(code);
 		if (code) {
 			return fetch('https://unsplash.com/oauth/token', {
 				method: 'POST',

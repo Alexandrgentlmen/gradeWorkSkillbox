@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { changePage, changeSearchText, imagesLoad, resetSerchPage} from '../redux/actions';
+import { changeSearchText, imagesLoad, loadUserProfile, resetSerchPage} from '../redux/actions';
+import { User } from './User';
+
+
 const ACCESS_KEY = process.env.REACT_APP_ACCESSKEY,
 	REDIRECT_URL = "urn:ietf:wg:oauth:2.0:oob";
 const authUrl = `https://unsplash.com/oauth/authorize?client_id=${ACCESS_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code&scope=public+read_user+write_user+write_likes`;
@@ -10,7 +13,12 @@ function Header() {
 	const [searchValue, setSearchValue] = useState('');
 	const dispatch = useDispatch();
 	const pageNumber = useSelector(state => state.imagesReducer.pageNumber);
-	
+	const userProfile = useSelector(state => state.userReducer.userProfile);
+
+	useEffect(() => {
+		dispatch(loadUserProfile(userProfile.username))
+	},[])
+
 	const onSearch =(e) => {
 		e.preventDefault();
 		dispatch(resetSerchPage());
@@ -18,10 +26,12 @@ function Header() {
 		dispatch(imagesLoad(searchValue,pageNumber));
 	
 	}
+	console.log(userProfile);
 	return (
 
 		<header className="header">
 			<nav className="header__nav-bar flex container">
+
 				<Link className="header__logo" to="/" title="Photer Foto">
 					<div className="header__logo_img">
 						<svg xmlns="http://www.w3.org/2000/svg" width={32} height={32} viewBox="0 0 32 32">
@@ -31,6 +41,7 @@ function Header() {
 					</div>
 					<div className="header__logo_text">PhotoEr</div>
 				</Link>
+
 				<div className="header__search-bar">
 					<form className="search-bar" autoComplete="off">
 						<div className="search-bar__container">
@@ -67,6 +78,7 @@ function Header() {
 						</div>
 					</form>
 				</div>
+				<User user={userProfile}/>
 				<ul className="header__sub-nav sub-nav">
 					<li className="sub-nav__item">
 						<a className="sub-nav__link" href="/discover/">Explore</a>
@@ -93,6 +105,7 @@ function Header() {
 						</a>
 					</li>
 				</ul>
+
 			</nav>
 			<div className="header__nav-bar_padding"></div>
 		</header>

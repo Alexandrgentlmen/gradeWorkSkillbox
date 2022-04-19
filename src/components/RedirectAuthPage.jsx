@@ -9,6 +9,7 @@ export const RedirectAuthPage = () => {
 	
 	useEffect(() => {
 		unsplashApi.auth();	
+		
 	},[])
 
 	useEffect(()=> {

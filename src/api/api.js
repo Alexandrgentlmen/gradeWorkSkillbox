@@ -1,7 +1,5 @@
 import * as axios from "axios";
 
-
-
 const apiRoot = "https://api.unsplash.com";
 const accessKey = 'lrsgf8ozN4GkqUkp8VGWMiDVjjvV0rdohkhcA07cs44';
 
@@ -11,7 +9,6 @@ export const imagesAPI = {
 	},
 
 	getLikePhoto(id) {
-
 		return fetch(`${apiRoot}/photos/${id}/like`, {
 			method: 'POST',
 			headers: {
@@ -22,7 +19,6 @@ export const imagesAPI = {
 		})
 	},
 	deleteLikePhoto(id) {
-
 		return fetch(`${apiRoot}/photos/${id}/like`, {
 			method: 'DELETE',
 			headers: {
@@ -38,9 +34,4 @@ export const searchAPI = {
 		return axios.get(`${apiRoot}/search/photos?page=${num}&per_page=12&query=${handleChange}&client_id=${accessKey}`)
 	}
 }
-// export const userAPI = {
-// 	loadProfileUser() {
-// 		return axios.get(`${apiRoot}/me`)
-// 	}
-// }
 

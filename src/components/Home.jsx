@@ -3,32 +3,24 @@ import { useSelector, useDispatch } from 'react-redux';
 import Masonry from "react-masonry-component";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import uniqid from 'uniqid';
-
 import Cards from './Cards';
 import { changePage, imagesLoad } from '../redux/actions';
 import Spin from './Spin';
-import { User } from './User';
-import { unsplashApi } from '../api/authApi';
-import Header from './Header';
+
+
 
 function Home() {
 	const dispatch = useDispatch();
 	const images = useSelector(state => state.imagesReducer.images);
 	const pageNumber = useSelector(state => state.imagesReducer.pageNumber);
-	const user = useSelector(state => state.userReducer.user);
 	const searchText = useSelector(state => state.imagesReducer.searchText);
-
+	console.log(images)
 	const masonryOptions = {
 		fitWidth: false,
 		columnWidth: 350,
 		gutter: 1,
 		itemSelector: ".card",
 	};
-
-	// useEffect(() => {
-	// 	const access_token = localStorage.getItem('token');
-	// 	access_token ? unsplashApi.getAuthUser() : unsplashApi.auth();
-	// }, []);
 
 	useEffect(() => {
 		if (!searchText) {
@@ -45,8 +37,7 @@ function Home() {
 	}
 
 	return (
-				<>
-					<User user={user} />
+				<>				
 					<InfiniteScroll
 						dataLength={images.length}
 						next={fetchImages}
@@ -62,7 +53,7 @@ function Home() {
 									photoUser={image.photoUser.small}
 									url={image.url} key={uniqid()}
 									id={image.id} totalLike={image.likes}
-									name={image.name}
+									name={image.name} likeFromUser={image.likeFromUser}
 								/>
 							))}
 						</Masonry>

@@ -1,13 +1,13 @@
-import { LOAD_USER } from "./types";
+import { LOAD_USER_PROFILE } from "./types";
 const initialState = {
-	user: []
+
+	userProfile: [],
 }
 export const userReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case LOAD_USER:
+		case LOAD_USER_PROFILE:
 			return {
-
-				user: action.userData
+				userProfile: action.userData
 			}
 
 		default:

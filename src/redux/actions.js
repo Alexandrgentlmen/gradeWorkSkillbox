@@ -2,15 +2,16 @@ import {
 	ERROR_DISPLAY_OFF, ERROR_DISPLAY_ON,
 	SEARCH_IMAGE, IMAGES_LOAD, LIKE_IMAGE,
 	LOADER_DISPLAY_OFF, LOADER_DISPLAY_ON, UNLIKE_IMAGE,
-	LOAD_USER,
 	CHANGE_CURRENT_PAGE,
 	RESET_SEARCH_IMAGE,
 	IS_SEARCHING,
 	CHANGE_SEARCH_TEXT,
-	RESET_SEARCH_PAGE
+	RESET_SEARCH_PAGE,
+	LOAD_USER_PROFILE,
+	CHANGE_LIKE,
 } from "./types";
 import { imagesAPI, searchAPI } from './../api/api';
-import { unsplashApi } from '../api/authApi'
+import { unsplashApi } from "../api/authApi";
 
 export const loaderOn = () => ({ type: LOADER_DISPLAY_ON })
 export const loaderOff = () => ({ type: LOADER_DISPLAY_OFF })
@@ -20,14 +21,15 @@ export const isSearching = () => ({ type: IS_SEARCHING })
 export const changePage = (pageNumber) => ({ type: CHANGE_CURRENT_PAGE, pageNumber })
 export const changeSearchText = (text) => ({ type: CHANGE_SEARCH_TEXT, text })
 export const resetSerchPage = () => ({ type: RESET_SEARCH_PAGE })
+export const changeLike = (id) => ({ type: CHANGE_LIKE, id })
 
-export const loadUser = () => {
+export const loadUserProfile = (userName) => {
 	return async (dispatch) => {
-		const userData = await unsplashApi.getAuthUser();
+		const userData = await unsplashApi.getAuthUser(userName);
 		console.log(userData);
 		try {
 			dispatch({
-				type: LOAD_USER,
+				type: LOAD_USER_PROFILE,
 				userData: userData
 			});
 		} catch (err) {
@@ -124,6 +126,7 @@ export const imagesLike = (id) => {
 			type: LIKE_IMAGE,
 			id: id,
 		});
+		dispatch(changeLike);
 	}
 }
 

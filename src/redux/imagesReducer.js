@@ -1,4 +1,4 @@
-import { IMAGES_LOAD, LIKE_IMAGE, SEARCH_IMAGE, CHANGE_CURRENT_PAGE, UNLIKE_IMAGE, RESET_SEARCH_IMAGE, IS_SEARCHING, CHANGE_SEARCH_TEXT, RESET_SEARCH_PAGE } from "./types"
+import { IMAGES_LOAD, LIKE_IMAGE, SEARCH_IMAGE, CHANGE_CURRENT_PAGE, UNLIKE_IMAGE, RESET_SEARCH_IMAGE, IS_SEARCHING, CHANGE_SEARCH_TEXT, RESET_SEARCH_PAGE, CHANGE_LIKE } from "./types"
 
 const initialState = {
 	images: [],
@@ -17,6 +17,7 @@ export const imagesReducer = (state = initialState, action) => {
 					likes: res.likes,
 					photoUser: res.user.profile_image,
 					name: res.user.first_name,
+					likeFromUser: res.liked_by_user
 				}
 			})
 			return {
@@ -32,6 +33,7 @@ export const imagesReducer = (state = initialState, action) => {
 					likes: res.likes,
 					photoUser: res.user.profile_image,
 					name: res.user.first_name,
+					likeFromUser: res.liked_by_user
 				}
 			})
 			return {
@@ -49,6 +51,7 @@ export const imagesReducer = (state = initialState, action) => {
 					likes: res.likes,
 					photoUser: res.user.profile_image,
 					name: res.user.first_name,
+					likeFromUser: res.liked_by_user
 				}
 			})
 			return {
@@ -56,28 +59,6 @@ export const imagesReducer = (state = initialState, action) => {
 				images: [...state.images, ...imagesSearch],
 
 			}
-
-			// 	action.imagesData.forEach(res => state.images.push(
-			// 		{
-			// 			url: res.urls.thumb,
-			// 			id: res.id,
-			// 			likes: res.likes,
-			// 			photoUser: res.user.profile_image,
-			// 			name: res.user.first_name,
-			// 		}
-			// 	))
-			// 	return state;
-			// }
-			// images: [...state.images, ...action.imagesData.map(res => {
-			// 	return {
-			// 		url: res.urls.thumb,
-			// 		id: res.id,
-			// 		likes: res.likes,
-			// 		photoUser: res.user.profile_image,
-			// 		name: res.user.first_name,
-			// 	}
-			// })],
-			// searchText: action.searchText,
 		}
 		case CHANGE_SEARCH_TEXT: {
 			return {
@@ -106,6 +87,17 @@ export const imagesReducer = (state = initialState, action) => {
 				isSearching: state.isSearching
 					? false
 					: true
+			}
+		}
+
+		case CHANGE_LIKE: {
+
+			const likeFromUser = true;
+
+			return {
+				...state,
+				images: [...state.images, likeFromUser],
+
 			}
 		}
 
