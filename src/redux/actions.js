@@ -9,6 +9,7 @@ import {
 	RESET_SEARCH_PAGE,
 	LOAD_USER_PROFILE,
 	CHANGE_LIKE,
+	CHANGE_TOTAL_LIKE,
 } from "./types";
 import { imagesAPI, searchAPI } from './../api/api';
 import { unsplashApi } from "../api/authApi";
@@ -22,6 +23,7 @@ export const changePage = (pageNumber) => ({ type: CHANGE_CURRENT_PAGE, pageNumb
 export const changeSearchText = (text) => ({ type: CHANGE_SEARCH_TEXT, text })
 export const resetSerchPage = () => ({ type: RESET_SEARCH_PAGE })
 export const changeLike = (id) => ({ type: CHANGE_LIKE, id })
+export const changeTotalLike = (id) => ({ type: CHANGE_TOTAL_LIKE, id })
 
 export const loadUserProfile = (userName) => {
 	return async (dispatch) => {
@@ -97,28 +99,6 @@ export const imagesLoad = (text, pageNumber) => {
 
 }
 
-// export const imagesSearch = (text, num) => {
-// 	return async (dispatch) => {
-// 		try {
-// 			dispatch(loaderOn());
-// 			const imagesData = await searchAPI.searching(text, num);
-// 			console.log('imageSearch', imagesData);
-// 			setTimeout(() => {
-// 				dispatch({
-// 					type: SEARCH_IMAGE,
-// 					imagesData: imagesData.data.results,
-// 					searchText: text,
-
-// 				});
-// 				dispatch(loaderOff());
-// 			}, 900)
-// 		} catch (err) {
-// 			dispatch(errorOn('Ошибка в запросе!'));
-// 			dispatch(loaderOff());
-// 		}
-// 	}
-// }
-
 export const imagesLike = (id) => {
 	return async (dispatch) => {
 		await imagesAPI.getLikePhoto(id);
@@ -126,7 +106,8 @@ export const imagesLike = (id) => {
 			type: LIKE_IMAGE,
 			id: id,
 		});
-		dispatch(changeLike);
+		dispatch(changeLike(id));
+		dispatch(changeTotalLike(id));
 	}
 }
 
@@ -137,6 +118,8 @@ export const imagesUnlike = (id) => {
 			type: UNLIKE_IMAGE,
 			id: id,
 		});
+		dispatch(changeLike(id));
+		dispatch(changeTotalLike(id));
 	}
 }
 

@@ -3,9 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import Masonry from "react-masonry-component";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import uniqid from 'uniqid';
+
 import Cards from './Cards';
 import { changePage, imagesLoad } from '../redux/actions';
 import Spin from './Spin';
+
 
 
 
@@ -49,12 +51,16 @@ function Home() {
 							disableImagesLoaded={false}
 							updateOnEachImageLoad={false}>
 							{images.map(image => (
-								<Cards
-									photoUser={image.photoUser.small}
-									url={image.url} key={uniqid()}
-									id={image.id} totalLike={image.likes}
-									name={image.name} likeFromUser={image.likeFromUser}
-								/>
+								
+									<Cards
+										links={image.links}
+										photoUser={image.photoUser.small}
+										url={image.urls.thumb} key={uniqid()}
+										id={image.id} totalLike={image.likes}
+										name={image.name} likeFromUser={image.likeFromUser}
+									/>
+							
+								
 							))}
 						</Masonry>
 					</InfiniteScroll>

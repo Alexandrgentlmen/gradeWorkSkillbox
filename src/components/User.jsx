@@ -8,8 +8,8 @@ export const User = ({user}) => {
 			
 				<a href="/" className="card__user">
 					<img src={user.profile_image.medium} 
-					heigth={60} width={60} 
-					className="card__avatar" 
+					heigth={50} width={50} 
+					className="card__avatar card__avatar_square" 
 					alt="foto-author" />
 				</a>
 			

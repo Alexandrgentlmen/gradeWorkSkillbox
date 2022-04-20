@@ -1,4 +1,4 @@
-import { IMAGES_LOAD, LIKE_IMAGE, SEARCH_IMAGE, CHANGE_CURRENT_PAGE, UNLIKE_IMAGE, RESET_SEARCH_IMAGE, IS_SEARCHING, CHANGE_SEARCH_TEXT, RESET_SEARCH_PAGE, CHANGE_LIKE } from "./types"
+import { IMAGES_LOAD, LIKE_IMAGE, SEARCH_IMAGE, CHANGE_CURRENT_PAGE, UNLIKE_IMAGE, RESET_SEARCH_IMAGE, IS_SEARCHING, CHANGE_SEARCH_TEXT, RESET_SEARCH_PAGE, CHANGE_LIKE, CHANGE_TOTAL_LIKE } from "./types"
 
 const initialState = {
 	images: [],
@@ -12,7 +12,8 @@ export const imagesReducer = (state = initialState, action) => {
 			const images = action.imagesData.map(res => {
 
 				return {
-					url: res.urls.thumb,
+					links: res.user.links.html,
+					urls: res.urls,
 					id: res.id,
 					likes: res.likes,
 					photoUser: res.user.profile_image,
@@ -28,7 +29,8 @@ export const imagesReducer = (state = initialState, action) => {
 		case RESET_SEARCH_IMAGE:
 			const imagesReset = action.imagesData.map(res => {
 				return {
-					url: res.urls.thumb,
+					links: res.user.links.html,
+					urls: res.urls,
 					id: res.id,
 					likes: res.likes,
 					photoUser: res.user.profile_image,
@@ -46,7 +48,8 @@ export const imagesReducer = (state = initialState, action) => {
 
 			const imagesSearch = action.imagesData.map(res => {
 				return {
-					url: res.urls.thumb,
+					links: res.user.links.html,
+					urls: res.urls,
 					id: res.id,
 					likes: res.likes,
 					photoUser: res.user.profile_image,
@@ -94,15 +97,33 @@ export const imagesReducer = (state = initialState, action) => {
 		// console.log(cityId);
 
 		case CHANGE_LIKE: {
-			const imagesList = { ...state.images }
-			const imagesID = action.id;
+			const imagesList = [...state.images]
+			const imageID = action.id;
+			const imageLikeIndex = imagesList.findIndex(img => img.id === imageID);
 
-			let imageLike = imagesList.find(img => img.id === imagesID);
-			imageLike.likeFromUser = true;
+			imagesList[imageLikeIndex].likeFromUser = !imagesList[imageLikeIndex].likeFromUser;
+			console.log(imagesList[imageLikeIndex].likeFromUser)
 			return {
 				...state,
-				images: [...state.images, imageLike],
+				images: [...imagesList]
+			}
+		}
 
+		case CHANGE_TOTAL_LIKE: {
+			const imagesList = [...state.images]
+			const imageID = action.id;
+			const imageLikeIndex = imagesList.findIndex(img => img.id === imageID);
+
+			if (imagesList[imageLikeIndex].likeFromUser) {
+				imagesList[imageLikeIndex].likes += 1;
+			} else {
+				imagesList[imageLikeIndex].likes -= 1;
+			}
+
+
+			return {
+				...state,
+				images: [...imagesList]
 			}
 		}
 

@@ -238,6 +238,23 @@ body {
 	}
 }
 
+.back-link {
+	cursor: pointer;
+	display: block;
+	color: white;
+	font-size: 17px;
+	line-height: 1;
+	font-weight: 600;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding: .7rem 1.75rem;
+	box-shadow: none;
+	border: none;
+	border-radius: 4px;
+	background: #05a081;
+	transition: transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s;
+}
+
 .settings {
 
 	&__view-set {
@@ -274,10 +291,11 @@ body {
 
 
 .card {
+	position: relative;
 	font-size: 23px;
 	margin: 1px 0 1px;
 	display: flex;
-	width: 340px;
+	min-width: 340px;
 	transition: transform 0.5s ease-in-out;
 
 
@@ -292,6 +310,7 @@ body {
 	}
 
 	&__img {
+		cursor: pointer;
 		display: flex;
 		width: 100%;
 		height: auto;
@@ -354,7 +373,7 @@ body {
 		display: block;
 		-webkit-box-align: center;
 		align-self: center;
-		margin: 0 0 0 20px;
+		margin-left: 20px;
 
 		display: -webkit-box;
 	}
@@ -365,6 +384,10 @@ body {
 		border-radius: 50%;
 		text-indent: -9999px;
 		z-index: 2;
+
+		&_square {
+			border-radius: 15%;
+		}
 	}
 
 	&__info {
@@ -389,9 +412,9 @@ body {
 		width: 24px;
 		height: 24px;
 
-		svg {
-			fill: #fff;
-		}
+		// svg {
+		// 	fill: #fff;
+		// }
 	}
 }
 

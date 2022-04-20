@@ -8,6 +8,7 @@ import { Layout } from './components/Layout';
 import Spin from './components/Spin';
 import { RedirectAuthPage } from './components/RedirectAuthPage';
 import { RequireAuth } from './hoc/RequireAuth';
+import { CurrentImage } from './components/CurrentImage';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
 
 					<Route exact index element={<Home />} />
 					<Route path="auth" element={<RedirectAuthPage />} />
+					<Route path=":photoId" element={<CurrentImage />} />
 					<Route path="*" element={<NotFound />} />
 				</Route>
 
