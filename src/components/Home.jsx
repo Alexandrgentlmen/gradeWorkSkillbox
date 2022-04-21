@@ -7,6 +7,7 @@ import uniqid from 'uniqid';
 import Cards from './Cards';
 import { changePage, imagesLoad } from '../redux/actions';
 import Spin from './Spin';
+import { Link } from 'react-router-dom';
 
 
 
@@ -25,7 +26,7 @@ function Home() {
 	};
 
 	useEffect(() => {
-		if (!searchText) {
+		if (!searchText ) {
 			dispatch(imagesLoad());
 		} else {
 			if (pageNumber !== 1) {
@@ -51,7 +52,7 @@ function Home() {
 							disableImagesLoaded={false}
 							updateOnEachImageLoad={false}>
 							{images.map(image => (
-								
+								<Link  to={`/${image.id}`}>
 									<Cards
 										links={image.links}
 										photoUser={image.photoUser.small}
@@ -59,6 +60,8 @@ function Home() {
 										id={image.id} totalLike={image.likes}
 										name={image.name} likeFromUser={image.likeFromUser}
 									/>
+								</Link>
+									
 							
 								
 							))}

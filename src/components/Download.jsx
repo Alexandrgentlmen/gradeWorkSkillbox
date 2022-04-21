@@ -5,7 +5,7 @@ const Download = () => {
 
 	return (
 
-		<a href="/" className="btn-download card__link-download">
+		<button href="/" className="btn--reset btn-download card__link-download">
 					<i className="card__svg-icon svg-icon">
 					<SvgDownload xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 100 100">
 							<g>
@@ -16,7 +16,7 @@ const Download = () => {
 							</g>
 						</SvgDownload>
 					</i>
-				</a>
+				</button>
 		
 	)
 }

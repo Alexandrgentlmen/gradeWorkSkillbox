@@ -42,6 +42,7 @@ export const loadUserProfile = (userName) => {
 
 export const imagesLoad = (text, pageNumber) => {
 	if (!text) {
+		console.log('dispatch (imagesLoad)');
 		return async (dispatch) => {
 			try {
 				dispatch(loaderOn());
