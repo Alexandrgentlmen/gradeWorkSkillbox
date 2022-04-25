@@ -7,7 +7,7 @@ import uniqid from 'uniqid';
 import Cards from './Cards';
 import { changePage, imagesLoad } from '../redux/actions';
 import Spin from './Spin';
-import { Link } from 'react-router-dom';
+
 
 
 
@@ -45,25 +45,24 @@ function Home() {
 						dataLength={images.length}
 						next={fetchImages}
 						hasMore={true}
-						loader={<Spin />}>
+						loader={<Spin />}
+						scrollThreshold={1}
+					>
 						<Masonry className={"photo-list"}
 							elementType={"div"}
 							options={masonryOptions}
 							disableImagesLoaded={false}
 							updateOnEachImageLoad={false}>
-							{images.map(image => (
-								<Link  to={`/${image.id}`}>
+							{images.map((image, index) => (
+								
 									<Cards
-										links={image.links}
-										photoUser={image.photoUser.small}
+										index={index}
+										links={image.user.links.html}
+										photoUser={image.user.profile_image.small}
 										url={image.urls.thumb} key={uniqid()}
 										id={image.id} totalLike={image.likes}
-										name={image.name} likeFromUser={image.likeFromUser}
+										name={image.user.username} liked_by_user={image.liked_by_user}
 									/>
-								</Link>
-									
-							
-								
 							))}
 						</Masonry>
 					</InfiniteScroll>

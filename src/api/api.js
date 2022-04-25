@@ -16,7 +16,7 @@ export const imagesAPI = {
 				'Content-Type': 'application/json',
 				'Authorization': 'Bearer ' + localStorage.getItem('token')
 			},
-		})
+		}).then(response => response.json());
 	},
 	deleteLikePhoto(id) {
 		return fetch(`${apiRoot}/photos/${id}/like`, {
@@ -26,7 +26,7 @@ export const imagesAPI = {
 				'Content-Type': 'application/json',
 				'Authorization': 'Bearer ' + localStorage.getItem('token')
 			},
-		})
+		}).then(response => response.json());
 	},
 }
 export const searchAPI = {

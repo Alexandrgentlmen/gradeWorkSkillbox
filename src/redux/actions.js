@@ -1,7 +1,7 @@
 import {
 	ERROR_DISPLAY_OFF, ERROR_DISPLAY_ON,
-	SEARCH_IMAGE, IMAGES_LOAD, LIKE_IMAGE,
-	LOADER_DISPLAY_OFF, LOADER_DISPLAY_ON, UNLIKE_IMAGE,
+	SEARCH_IMAGE, IMAGES_LOAD,
+	LOADER_DISPLAY_OFF, LOADER_DISPLAY_ON,
 	CHANGE_CURRENT_PAGE,
 	RESET_SEARCH_IMAGE,
 	IS_SEARCHING,
@@ -22,7 +22,7 @@ export const isSearching = () => ({ type: IS_SEARCHING })
 export const changePage = (pageNumber) => ({ type: CHANGE_CURRENT_PAGE, pageNumber })
 export const changeSearchText = (text) => ({ type: CHANGE_SEARCH_TEXT, text })
 export const resetSerchPage = () => ({ type: RESET_SEARCH_PAGE })
-export const changeLike = (id) => ({ type: CHANGE_LIKE, id })
+export const changeLike = (index, id, newImageData) => ({ type: CHANGE_LIKE, index, id, newImageData })
 export const changeTotalLike = (id) => ({ type: CHANGE_TOTAL_LIKE, id })
 
 export const loadUserProfile = (userName) => {
@@ -100,27 +100,22 @@ export const imagesLoad = (text, pageNumber) => {
 
 }
 
-export const imagesLike = (id) => {
+export const imagesLike = (index, id) => {
 	return async (dispatch) => {
-		await imagesAPI.getLikePhoto(id);
-		dispatch({
-			type: LIKE_IMAGE,
-			id: id,
-		});
-		dispatch(changeLike(id));
-		dispatch(changeTotalLike(id));
+		const newImageData = await imagesAPI.getLikePhoto(id);
+
+		console.log('imagesLike action', newImageData);
+		dispatch(changeLike(index, id, newImageData));
+
 	}
 }
 
-export const imagesUnlike = (id) => {
+export const imagesUnlike = (index, id) => {
 	return async (dispatch) => {
-		await imagesAPI.deleteLikePhoto(id);
-		dispatch({
-			type: UNLIKE_IMAGE,
-			id: id,
-		});
-		dispatch(changeLike(id));
-		dispatch(changeTotalLike(id));
+		const newImageData = await imagesAPI.deleteLikePhoto(id);
+		console.log('imagesUnlike action', newImageData);
+		dispatch(changeLike(index, id, newImageData));
+
 	}
 }
 

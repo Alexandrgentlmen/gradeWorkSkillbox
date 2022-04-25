@@ -5,7 +5,7 @@ export const SvgHeart = styled.svg`
 height: 24px;
 width: 24px;
 transition: 0.25s;
-fill:  ${props => props.likeFromUser ? '#05a081' : 'white'};
+fill:  ${props => props.liked_by_user ? '#05a081' : 'white'};
 
 `;
 
