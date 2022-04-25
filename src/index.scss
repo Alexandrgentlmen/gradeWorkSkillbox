@@ -332,6 +332,23 @@ body {
 
 	}
 
+	&__date {
+		bottom: 10px;
+		right: 20px;
+		position: absolute;
+		font-size: 9px;
+		box-sizing: content-box;
+		max-width: calc(100% - 40px);
+		margin-right: 5px;
+		margin-left: 5px;
+		display: inline-block;
+		vertical-align: middle;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		color: #e8e8e8;
+		z-index: 3;
+	}
+
 	&__link {
 		width: 100%;
 		left: 0;

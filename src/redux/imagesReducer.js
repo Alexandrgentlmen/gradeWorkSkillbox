@@ -9,60 +9,23 @@ const initialState = {
 export const imagesReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case IMAGES_LOAD:
-			const images = action.imagesData.map(res => {
-				const photo = { ...res }
-				return photo;
-				// return {
-				// 	links: res.user.links.html,
-				// 	urls: res.urls,
-				// 	id: res.id,
-				// 	likes: res.likes,
-				// 	photoUser: res.user.profile_image,
-				// 	name: res.user.first_name,
-				// 	likeFromUser: res.liked_by_user
-				// }
-			})
-			console.log('IMAGES_LOAD', images)
 			return {
 				...state,
 				images: [...state.images, ...action.imagesData],
 			}
 
 		case RESET_SEARCH_IMAGE:
-			const imagesReset = action.imagesData.map(res => {
-				return {
-					links: res.user.links.html,
-					urls: res.urls,
-					id: res.id,
-					likes: res.likes,
-					photoUser: res.user.profile_image,
-					name: res.user.first_name,
-					likeFromUser: res.liked_by_user
-				}
-			})
+			const imagesReset = action.imagesData
 			return {
 				...state,
 				images: [...imagesReset],
-
 			}
 
 		case SEARCH_IMAGE: {
-
-			const imagesSearch = action.imagesData.map(res => {
-				return {
-					links: res.user.links.html,
-					urls: res.urls,
-					id: res.id,
-					likes: res.likes,
-					photoUser: res.user.profile_image,
-					name: res.user.first_name,
-					likeFromUser: res.liked_by_user
-				}
-			})
+			const imagesSearch = action.imagesData;
 			return {
 				...state,
 				images: [...state.images, ...imagesSearch],
-
 			}
 		}
 		case CHANGE_SEARCH_TEXT: {

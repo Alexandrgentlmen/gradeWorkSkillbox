@@ -4,11 +4,12 @@ import { Collect } from './Collect';
 import { Download } from './Download';
 import { Like } from './Like';
 
-function Cards({index, name ,photoUser, url, id, totalLike, liked_by_user, links }) {
+function Cards({index, name ,photoUser, url, id, totalLike, liked_by_user, links,upDate }) {
 
 	return (
 		
 			<article className="card overlay">
+				<span className="card__date">{upDate}</span> 
 				<div className="card__link d-flex">
 					<Link  to={`/${id}`}>
 						<img
@@ -18,6 +19,7 @@ function Cards({index, name ,photoUser, url, id, totalLike, liked_by_user, links
 						alt="gallery" />
 					</Link>
 				</div>
+				
 				<button onClick={()=>{window.open(links, '_blank')}} className="btn--reset card__photographer d-flex">
 						<img
 						 src={photoUser}
@@ -25,8 +27,10 @@ function Cards({index, name ,photoUser, url, id, totalLike, liked_by_user, links
 						 width={30}
 						 className="card__avatar"
 						 alt="foto-author" />
+					
 					<span className="card__name">{name}</span>
 				</button>
+				
 				<div className="card__info d-flex">
 					<Download/>
 					<Collect/>
