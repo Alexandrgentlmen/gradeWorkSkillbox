@@ -2,7 +2,7 @@ import { createApi } from 'unsplash-js';
 
 const ACCESS_KEY = process.env.REACT_APP_ACCESSKEY,
 	SECRET_KEY = process.env.REACT_APP_SECRETKEY,
-	REDIRECT_URL = "urn:ietf:wg:oauth:2.0:oob";
+	REDIRECT_URL = "https://gradeskillbox-61c5t2t0n-alexandrgustavo.vercel.app/auth";
 const authUrl = `https://unsplash.com/oauth/authorize?client_id=${ACCESS_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code&scope=public+read_user+write_user+write_likes`;
 
 const unsplash = createApi({
