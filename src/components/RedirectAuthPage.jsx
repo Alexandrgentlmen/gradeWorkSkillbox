@@ -1,22 +1,23 @@
-import React, { useEffect } from 'react';
-// import { useLocation, useNavigate } from 'react-router-dom';
-import { unsplashApi } from '../api/authApi';
+import React from 'react';
+import Button from '@mui/material/Button';
+
+const ACCESS_KEY = process.env.REACT_APP_ACCESSKEY,
+	REDIRECT_URL = "https://gradeskillbox.vercel.app/redirect";
+const authUrl = `https://unsplash.com/oauth/authorize?client_id=${ACCESS_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code&scope=public+read_user+write_user+write_likes`;
 
 export const RedirectAuthPage = () => {
-	// const navigate = useNavigate();
-	// const location = useLocation();
-	// const fromPage = location.state?.from.pathname || '/';
-	
-	useEffect(() => {
-		unsplashApi.auth();	
-		
-	},[])
-
-	// useEffect(()=> {
-	// 	navigate(fromPage, {replace: true})
-	// },[fromPage, navigate])
 
 	return (
-		<></>
+		<div className='center'>
+		<Button
+		  variant="contained"
+		  color="success"
+		  onClick={() => {
+			  window.location.href = authUrl;
+		  }}
+		>
+			Success
+		</Button>
+		</div>
 	)
 }

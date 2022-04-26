@@ -9,6 +9,7 @@ import Spin from './components/Spin';
 import { RedirectAuthPage } from './components/RedirectAuthPage';
 import { RequireAuth } from './hoc/RequireAuth';
 import { CurrentImage } from './components/CurrentImage';
+import { Redirect } from './components/Redirect';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
 
 					<Route exact index element={<Home />} />
 					<Route path="auth" element={<RedirectAuthPage />} />
+					<Route path="redirect" element={<Redirect />} />
 					<Route path=":photoId" element={<CurrentImage />} />
 					<Route path="*" element={<NotFound />} />
 				</Route>
