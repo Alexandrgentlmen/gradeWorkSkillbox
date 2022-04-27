@@ -1,4 +1,3 @@
-import React from 'react';
 import Button from '@mui/material/Button';
 
 const ACCESS_KEY = process.env.REACT_APP_ACCESSKEY,

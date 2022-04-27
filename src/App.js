@@ -17,7 +17,8 @@ function App() {
 		<div className="App">
 			<Spin />
 			<Routes>
-
+				<Route path="auth" element={<RedirectAuthPage />} />
+				<Route path="redirect" element={<Redirect />} />
 				<Route path="/" element={
 					<RequireAuth>
 						<Layout />
@@ -25,14 +26,10 @@ function App() {
 				}>
 
 					<Route exact index element={<Home />} />
-					<Route path="auth" element={<RedirectAuthPage />} />
-					<Route path="redirect" element={<Redirect />} />
 					<Route path=":photoId" element={<CurrentImage />} />
 					<Route path="*" element={<NotFound />} />
 				</Route>
-
 			</Routes>
-
 		</div >
 	);
 }
