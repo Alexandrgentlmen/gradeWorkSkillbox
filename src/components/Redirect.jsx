@@ -18,7 +18,7 @@ export const Redirect = () => {
 					'Accept': 'application/json',
 					'Content-Type': 'application/json'
 				},
-				params: {
+				data: {
 					client_id: ACCESS_KEY,
 					client_secret: SECRET_KEY,
 					redirect_uri: REDIRECT_URL,
