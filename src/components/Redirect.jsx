@@ -1,5 +1,5 @@
 import  { useEffect } from 'react';
-
+import * as axios from "axios";
 const ACCESS_KEY = process.env.REACT_APP_ACCESSKEY,
 	SECRET_KEY = process.env.REACT_APP_SECRETKEY,
 	REDIRECT_URL = "https://gradeskillbox.vercel.app/";
@@ -12,13 +12,8 @@ export const Redirect = () => {
 		const code = url.searchParams.get('code');
 		console.log(code);
 		if (code) {
-			return fetch('https://unsplash.com/oauth/token', {
-				method: 'POST',
-				headers: {
-					'Accept': 'application/json',
-					// 'Content-Type': 'application/json',
-					'Content-Type': 'application/x-www-form-urlencoded'
-				},
+			return axios.post('https://unsplash.com/oauth/token', {
+				
 				body: JSON.stringify({
 					client_id: ACCESS_KEY,
 					client_secret: SECRET_KEY,
