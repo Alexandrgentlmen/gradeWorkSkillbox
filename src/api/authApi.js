@@ -1,15 +1,3 @@
-// import { createApi } from 'unsplash-js';
-
-// const ACCESS_KEY = process.env.REACT_APP_ACCESSKEY,
-// SECRET_KEY = process.env.REACT_APP_SECRETKEY,
-// REDIRECT_URL = "urn:ietf:wg:oauth:2.0:oob";
-// const authUrl = `https://unsplash.com/oauth/authorize?client_id=${ACCESS_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code&scope=public+read_user+write_user+write_likes`;
-
-// const unsplash = createApi({
-// 	accessKey: localStorage.getItem('token') ? 'Bearer ' + localStorage.getItem('token') : ACCESS_KEY
-// });
-
-// window.unsplash = unsplash;
 
 export const unsplashApi = {
 	getAuthUser() {
@@ -21,33 +9,5 @@ export const unsplashApi = {
 				'Authorization': 'Bearer ' + localStorage.getItem('token')
 			}
 		}).then(res => res.json()).then(data => data);
-	},
-
-	// auth() {
-	// 	const url = new URL(window.location.href);
-	// 	const code = url.searchParams.get('code');
-	// 	if (code) {
-	// 		return fetch('https://unsplash.com/oauth/token', {
-	// 			method: 'POST',
-	// 			headers: {
-	// 				'Accept': 'application/json',
-	// 				'Content-Type': 'application/json'
-	// 			},
-	// 			body: JSON.stringify({
-	// 				client_id: ACCESS_KEY,
-	// 				client_secret: SECRET_KEY,
-	// 				redirect_uri: REDIRECT_URL,
-	// 				code: code,
-	// 				grant_type: 'authorization_code'
-	// 			})
-	// 		}).then(response => response.json()).then(data => {
-	// 			console.log(data)
-	// 			localStorage.setItem('token', data.access_token);
-
-	// 		})
-	// 	} else {
-	// 		window.location.href = authUrl;
-	// 	}
-	// },
-
+	}
 }

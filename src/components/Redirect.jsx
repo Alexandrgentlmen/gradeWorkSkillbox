@@ -3,6 +3,7 @@ import  { useEffect } from 'react';
 const ACCESS_KEY = process.env.REACT_APP_ACCESSKEY,
 	SECRET_KEY = process.env.REACT_APP_SECRETKEY,
 	REDIRECT_URL = "https://gradeskillbox.vercel.app/";
+	// REDIRECT_URL = "https://gradeskillbox.vercel.app/";
 
 export const Redirect = () => {
 

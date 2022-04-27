@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { changeSearchText, imagesLoad, loadUserProfile, resetSerchPage} from '../redux/actions';
@@ -6,7 +6,7 @@ import { User } from './User';
 
 
 const ACCESS_KEY = process.env.REACT_APP_ACCESSKEY,
-	REDIRECT_URL = "https://gradeskillbox.vercel.app/redirect";
+	REDIRECT_URL = "https://gradeskillbox.vercel.app";
 const authUrl = `https://unsplash.com/oauth/authorize?client_id=${ACCESS_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code&scope=public+read_user+write_user+write_likes`;
 
 function Header() {
