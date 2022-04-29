@@ -7,16 +7,21 @@ const authUrl = `https://unsplash.com/oauth/authorize?client_id=${ACCESS_KEY}&re
 export const RedirectAuthPage = () => {
 
 	return (
-		<div className='center'>
-		<Button
-		  variant="contained"
-		  color="success"
-		  onClick={() => {
-			  window.location.href = authUrl;
-		  }}
-		>
-			Success
-		</Button>
-		</div>
+		<div class="hystmodal" id="myModal">
+			<div class="hystmodal__window">
+				<Button
+					variant="contained"
+					color="success"
+					onClick={() => {
+						window.location.href = authUrl;
+					}}
+				>
+					Success
+				</Button>
+				<button data-hystclose class="hystmodal__close">Close</button>  
+					Текст модального окошка.
+				<img src="img/photo.jpg" alt="Изображение в окне" />
+			</div>
+		</div>	
 	)
 }
