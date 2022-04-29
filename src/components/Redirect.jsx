@@ -22,7 +22,6 @@ export const Redirect = () => {
 			code: code,
 			grant_type: 'authorization_code'
 		};
-		const tokenURL = 'https://unsplash.com/oauth/token';
 		const options = {
 			method: 'POST',
 			headers: {
@@ -30,7 +29,7 @@ export const Redirect = () => {
 				'Content-Type': 'application/x-www-form-urlencoded'
 			},
 			data: qs.stringify(data),
-			tokenURL,
+			url :'https://unsplash.com/oauth/token'
 		}
 
 		if (code) {
