@@ -6,38 +6,6 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.hystmodal {
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	left: 0;
-	overflow: hidden;
-	overflow-y: auto;
-	-webkit-overflow-scrolling: touch;
-	display: flex;
-	flex-flow: column nowrap;
-	justify-content: center;
-	/* см. ниже */
-	align-items: center;
-	z-index: 99;
-	/* Чтобы окно не прилипало к границе
-	браузера установим отступы */
-	padding: 30px 0;
-}
-
-.hystmodal__window {
-	background: #fff;
-
-	/* Установим по умолчанию ширину 600px
-	но она будет не больше ширины браузера */
-	width: 600px;
-	max-width: 100%;
-
-	/* Заготовка для будущих анимаций */
-	transition: transform 0.15s ease 0s, opacity 0.15s ease 0s;
-	transform: scale(1);
-}
 
 .header {
 
@@ -52,7 +20,6 @@ body {
 		border: none;
 		border-radius: 6px;
 		z-index: 1;
-
 
 	}
 
@@ -507,4 +474,20 @@ body {
 	flex: 0 1;
 	width: 95%;
 	margin: 0 auto;
+}
+
+.center {
+	text-align: center;
+}
+
+.center:before {
+	content: '';
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+}
+
+.btn-success {
+	display: inline-block;
+	vertical-align: middle;
 }

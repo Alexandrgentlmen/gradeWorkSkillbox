@@ -37,8 +37,17 @@ export const Redirect = () => {
 			return axios(options).then(response => response.json()).then(data => {
 				console.log(data)
 				localStorage.setItem('token', data.access_token);
-			}).catch(error => {
-				alert('Неизвестная ошибка:', error.toJSON());
+			}).catch(err => { 
+				if (err.response) { 
+					console.log('err.response', err.response)
+
+				} else if (err.request) { 
+					// client never received a response, or request never left
+					console.log('err.request', err.request)
+				} else { 
+					console.log('неизвестная ошибка', `${err}`)
+					// anything else 
+				} 
 			});
 		}	
 	}
