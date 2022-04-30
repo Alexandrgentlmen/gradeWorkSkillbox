@@ -33,10 +33,7 @@ export const Redirect = () => {
 		}
 
 		if (code) {
-			return axios(options).then(response =>
-				console.log(response))
-				.then(response => response.json()).then(data => {
-				console.log(data)
+			return axios(options).then(data => {
 				localStorage.setItem('token', data.access_token);
 			}).catch(err => { 
 				if (err.response) { 

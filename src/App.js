@@ -6,7 +6,7 @@ import NotFound from './components/NotFound';
 import Home from './components/Home';
 import { Layout } from './components/Layout';
 import Spin from './components/Spin';
-import { RedirectAuthPage } from './components/RedirectAuthPage';
+import { AuthPage } from './components/AuthPage';
 import { RequireAuth } from './hoc/RequireAuth';
 import { CurrentImage } from './components/CurrentImage';
 import { Redirect } from './components/Redirect';
@@ -17,7 +17,7 @@ function App() {
 		<div className="App">
 			<Spin />
 			<Routes>
-				<Route path="auth" element={<RedirectAuthPage />} />
+				<Route path="auth" element={<AuthPage />} />
 				<Route path="redirect" element={<Redirect />} />
 				<Route path="/" element={
 					<RequireAuth>
