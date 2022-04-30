@@ -4,7 +4,7 @@ import * as axios from "axios";
 
 const ACCESS_KEY = process.env.REACT_APP_ACCESSKEY,
 	SECRET_KEY = process.env.REACT_APP_SECRETKEY,
-	REDIRECT_URL = "https://gradeskillbox.vercel.app/redirect";
+	REDIRECT_URL = "https://gradeskillbox.vercel.app/";
 
 	
 
@@ -33,7 +33,9 @@ export const Redirect = () => {
 		}
 
 		if (code) {
-			return axios(options).then(response => response.json()).then(data => {
+			return axios(options).then(response =>
+				console.log(response))
+				.then(response => response.json()).then(data => {
 				console.log(data)
 				localStorage.setItem('token', data.access_token);
 			}).catch(err => { 
@@ -44,7 +46,7 @@ export const Redirect = () => {
 					// client never received a response, or request never left
 					console.log('err.request', err.request)
 				} else { 
-					console.log('неизвестная ошибка', `${err}`)
+					console.log('неизвестная ошибка', `${err.text}`)
 					// anything else 
 				} 
 			});
