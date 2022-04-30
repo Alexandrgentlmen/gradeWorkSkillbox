@@ -8,7 +8,7 @@ export const RedirectAuthPage = () => {
 
 	return (
 		
-		<div className='center'>
+		<div className='center container'>
 			<Button
 				className = 'btn-success'
 				variant="contained"

@@ -477,15 +477,13 @@ body {
 }
 
 .center {
-	text-align: center;
+	display: flex;
+	justify-content: center;
+	/*Центрирование по горизонтали*/
+	align-items: center;
+	/*Центрирование по вертикали */
 }
 
-.center:before {
-	content: '';
-	display: inline-block;
-	height: 100%;
-	vertical-align: middle;
-}
 
 .btn-success {
 	display: inline-block;

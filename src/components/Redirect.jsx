@@ -1,6 +1,6 @@
 import  { useEffect } from 'react';
 import * as axios from "axios";
-const qs = require('qs');
+
 
 const ACCESS_KEY = process.env.REACT_APP_ACCESSKEY,
 	SECRET_KEY = process.env.REACT_APP_SECRETKEY,
@@ -26,9 +26,9 @@ export const Redirect = () => {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
-				'Content-Type': 'application/x-www-form-urlencoded'
+				'Content-Type': 'application/json',
 			},
-			data: qs.stringify(data),
+			data,
 			url :'https://unsplash.com/oauth/token'
 		}
 
