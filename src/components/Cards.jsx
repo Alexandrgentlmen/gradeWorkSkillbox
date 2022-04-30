@@ -4,12 +4,12 @@ import { Collect } from './Collect';
 import { Download } from './Download';
 import { Like } from './Like';
 
-function Cards({index, name ,photoUser, url, id, totalLike, liked_by_user, links,upDate }) {
+function Cards({index, name ,photoUser, url, id, totalLike, liked_by_user, links,created }) {
 
 	return (
 		
 			<article className="card overlay">
-				<span className="card__date">{upDate}</span> 
+				<span className="card__date">{created}</span> 
 				<div className="card__link d-flex">
 					<Link  to={`/${id}`}>
 						<img

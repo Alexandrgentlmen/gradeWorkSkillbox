@@ -53,7 +53,7 @@ function Home() {
 								
 									<Cards
 										index={index}
-										upDate={image.promoted_at.slice(0, 10)}
+										created={image.created_at.slice(0, 10)}
 										links={image.user.links.html}
 										photoUser={image.user.profile_image.small}
 										url={image.urls.thumb} key={uniqid()}

@@ -20,7 +20,7 @@ export const CurrentImage = () => {
 										url={images[Index].urls.full} key={uniqid()}
 										id={images[Index].id} totalLike={images[Index].likes}
 										name={images[Index].user.username} likeFromUser={images[Index].liked_by_user}
-										links={images[Index].user.links.html} upDate={images[Index].promoted_at.slice(0, 10)}
+										links={images[Index].user.links.html} created={images[Index].created_at.slice(0, 10)}
 									/>
 		</div>
 	)
