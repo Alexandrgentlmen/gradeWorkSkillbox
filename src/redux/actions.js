@@ -68,6 +68,8 @@ export const imagesLoad = (text, pageNumber) => {
 				dispatch(loaderOn());
 
 				const imagesData = await searchAPI.searching(text, pageNumber);
+				console.log(imagesData.data.results)
+				console.log(imagesData.data)
 				if (pageNumber === 1) {
 					setTimeout(() => {
 						dispatch({

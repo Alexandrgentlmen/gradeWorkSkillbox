@@ -8,10 +8,6 @@ import Cards from './Cards';
 import { changePage, imagesLoad } from '../redux/actions';
 import Spin from './Spin';
 
-
-
-
-
 function Home() {
 	const dispatch = useDispatch();
 	const images = useSelector(state => state.imagesReducer.images);
