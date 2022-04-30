@@ -75,7 +75,7 @@ export const imagesLoad = (text, pageNumber) => {
 							type: RESET_SEARCH_IMAGE,
 							imagesData: imagesData.data.results,
 							searchText: text,
-							pageNumber: pageNumber,
+							pageNumber: 1,
 						});
 						dispatch(loaderOff());
 					}, 900)
