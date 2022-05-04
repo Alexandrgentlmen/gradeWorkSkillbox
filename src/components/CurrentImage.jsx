@@ -22,7 +22,8 @@ export const CurrentImage = () => {
 										totalLike={images[Index].likes}
 										name={images[Index].user.username} 
 										likeFromUser={images[Index].liked_by_user}
-										links={images[Index].user.links.html} 
+										links={images[Index].user.links.html}
+										urlReg={images[Index].urls.regular}  
 										created={images[Index].created_at.slice(0, 10)}
 									/>
 		</div>
