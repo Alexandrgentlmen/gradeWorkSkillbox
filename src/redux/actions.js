@@ -29,7 +29,7 @@ export const changeLike = (index, id, newImageData) => ({ type: CHANGE_LIKE, ind
 export const changeTotalLike = (id) => ({ type: CHANGE_TOTAL_LIKE, id })
 export const changeImagesState = () => ({ type: CHANGE_IMAGES_STATE })
 
-export const openModal = (url) => ({ type: MODAL_OPEN, url })
+export const openModal = (urlReg) => ({ type: MODAL_OPEN, urlReg })
 export const closeModal = () => ({ type: MODAL_CLOSE })
 
 export const loadUserProfile = (userName) => {

@@ -2,7 +2,7 @@ import { MODAL_CLOSE, MODAL_OPEN } from "./types"
 
 const initialState = {
 	isOpen: false,
-	url: '',
+	urlReg: '',
 }
 
 export const modalReducer = (state = initialState, action) => {
@@ -12,7 +12,7 @@ export const modalReducer = (state = initialState, action) => {
 			return {
 				...state,
 				isOpen: true,
-				url: action.url
+				urlReg: action.urlReg
 			}
 		case MODAL_CLOSE:
 			return {

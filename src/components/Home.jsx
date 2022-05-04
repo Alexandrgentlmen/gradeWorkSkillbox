@@ -58,7 +58,7 @@ function Home() {
 										links={image.user.links.html}
 										photoUser={image.user.profile_image.small}
 										url={image.urls.thumb}
-										urlFull={image.urls.regular} 
+										urlReg={image.urls.regular} 
 										key={uniqid()}
 										id={image.id} totalLike={image.likes}
 										name={image.user.username} liked_by_user={image.liked_by_user}

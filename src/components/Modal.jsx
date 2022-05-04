@@ -30,7 +30,7 @@ import cn from 'classnames'
 					onClick={()=> {
 						dispatch(closeModal());
 					}}
-					src={modalWindow.url} 
+					src={modalWindow.urlReg} 
 					alt="gallery"
 					/>
 			</div>

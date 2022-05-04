@@ -9,7 +9,7 @@ import { Download } from './Download';
 import { Like } from './Like';
 
 
-function Cards({ index, name ,photoUser, urlFull ,url, id, totalLike, liked_by_user, links, created }) {
+function Cards({ index, name ,photoUser, urlReg ,url, id, totalLike, liked_by_user, links, created }) {
 
 	const dispatch = useDispatch();
 
@@ -44,7 +44,7 @@ function Cards({ index, name ,photoUser, urlFull ,url, id, totalLike, liked_by_u
 		 				href="/"
 						className="btn--reset btn-download"
 						onClick={()=>{
-							dispatch(openModal(urlFull));
+							dispatch(openModal(urlReg));
 						}}
 					>
 						<Download/>
