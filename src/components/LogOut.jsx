@@ -12,7 +12,7 @@ export const LogOut = () => {
 				onClick={(e) => {
 					e.preventDefault();
 					localStorage.clear();
-					navigate('/', {replace: true});
+					navigate('/auth', {replace: true});
 				}}
 			 	 className="sub-nav__link">
 				 	LogOut
