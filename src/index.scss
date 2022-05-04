@@ -75,6 +75,8 @@ body {
 	}
 }
 
+
+
 .search-bar {
 
 	position: relative;
@@ -207,10 +209,11 @@ body {
 
 
 	&__link {
+		transition: color 0.15s;
 		display: block;
 		font-size: 17px;
 		line-height: 1;
-		font-weight: 400;
+		font-weight: 500;
 		margin-top: 0;
 		margin-bottom: 0;
 
@@ -222,19 +225,12 @@ body {
 		svg path {
 			fill: #fff;
 		}
-	}
 
-	&__btn {
-		margin-top: 0;
-		margin-bottom: 0;
-		display: block;
-		padding: .7rem 1.75rem;
-		font-weight: 600;
-		box-shadow: none;
-		border: none;
-		border-radius: 4px;
-		background: #05a081;
-		transition: transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s;
+		&:hover {
+
+			color: #05a081;
+			transition: color 0.15s;
+		}
 	}
 }
 
@@ -263,19 +259,27 @@ body {
 	}
 }
 
+.overlay {
+	bottom: 100%;
+	opacity: 0;
+	transition: bottom .9s;
+}
+
 .overlay:before {
 	content: "";
 	pointer-events: none;
 	position: absolute;
 	left: 0;
 	right: 0;
-	bottom: 0;
+	bottom: 100%;
+	width: 100%;
 	height: 80px;
 	background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.5)), to(transparent));
 	background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, transparent 100%);
 	opacity: 0;
 	-webkit-transition: opacity .2s;
 	transition: opacity .2s;
+	transition: bottom .2s;
 	border-bottom-left-radius: 2px;
 	border-bottom-right-radius: 2px;
 	z-index: 1;
@@ -283,7 +287,6 @@ body {
 
 .wrap {
 	font-size: 18px;
-	position: relative;
 	max-width: 1200px;
 	margin: 70px auto 0;
 
@@ -303,10 +306,31 @@ body {
 		transform: translateX(2px);
 	}
 
-	&:hover:before {
+	&:hover .overlay {
+		bottom: 0;
 		opacity: 1;
-		-webkit-transition-delay: .1s;
-		transition-delay: .1s;
+		transition: opacity .2s;
+		transition: bottom .2s;
+	}
+
+	&:hover .overlay .card__photographer {
+		bottom: 0;
+		opacity: 1;
+		transition: opacity .2s;
+		transition: bottom .2s;
+	}
+
+	&:hover .overlay .card__info {
+		bottom: 0;
+		opacity: 1;
+		transition: opacity .2s;
+		transition: bottom .2s;
+	}
+
+	&:hover .overlay:before {
+		bottom: 0;
+		opacity: 1;
+		transition: all .2s;
 	}
 
 	&__img {
@@ -333,8 +357,8 @@ body {
 	}
 
 	&__date {
-		bottom: 10px;
-		right: 20px;
+		bottom: 20px;
+		right: 39px;
 		position: absolute;
 		font-size: 9px;
 		box-sizing: content-box;
@@ -361,9 +385,10 @@ body {
 		text-align: center;
 		font-weight: 600;
 		color: white;
-
-
-
+		position: absolute;
+		top: 15px;
+		right: -9px;
+		font-size: 9px;
 	}
 
 	&__photographer {
@@ -373,7 +398,7 @@ body {
 		height: auto;
 		max-width: calc(100% - 116px);
 		position: absolute;
-		bottom: 05px;
+		bottom: 25%;
 		left: 0;
 		padding-bottom: 1.15rem;
 		padding-left: 1.15rem;
@@ -412,15 +437,16 @@ body {
 
 	&__info {
 		position: absolute;
-		bottom: 0;
-		left: 190px;
+		bottom: 25%;
+		right: 13px;
 		padding-bottom: 1.15rem;
-		padding-right: 1.15rem;
+		padding-right: .15rem;
 		color: #fff;
 		z-index: 3;
 	}
 
 	&__link-download {
+
 		opacity: 1;
 		width: 40px;
 		color: #fff;
@@ -429,10 +455,14 @@ body {
 	}
 
 	&__svg-icon {
-		width: 20px;
-		height: 20px;
+		width: 18px;
+		height: 18px;
 
 	}
+}
+
+.btn-like {
+	position: relative;
 }
 
 .content {
@@ -470,22 +500,74 @@ body {
 }
 
 .photo-list {
+	overflow: hidden;
 	display: flex;
 	flex: 0 1;
 	width: 95%;
 	margin: 0 auto;
 }
 
-.center {
-	display: flex;
-	justify-content: center;
-	/*Центрирование по горизонтали*/
-	align-items: center;
-	/*Центрирование по вертикали */
-}
-
 
 .btn-success {
 	display: inline-block;
 	vertical-align: middle;
+}
+
+.outer {
+	padding: 10px 20px 70px;
+	flex-direction: column;
+	margin: 0 auto;
+	max-width: 60%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+	background-color: honeydew;
+
+	&__title {
+		font-size: 24px;
+
+	}
+}
+
+.modal {
+	height: 100vh;
+	width: 100vw;
+	background-color: rgba(0, 0, 0, 0.35);
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	pointer-events: none;
+	transition: 0.5s;
+	z-index: 5;
+
+	&.active {
+		opacity: 1;
+		pointer-events: all;
+	}
+}
+
+.modal__content {
+
+	height: 55vh;
+	width: 65vw;
+	padding: 20px;
+	border-radius: 5px;
+	background-color: #05a081;
+	transition: 0.5s;
+	transform: scale(1);
+
+	&.active {
+		transition: 0.5s;
+		transform: scale(1.4);
+	}
+
+	img {
+		display: block;
+		height: calc(100% - 5px);
+	}
 }

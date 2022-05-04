@@ -34,4 +34,3 @@ export const searchAPI = {
 		return axios.get(`${apiRoot}/search/photos?page=${num}&per_page=12&query=${handleChange}&client_id=${accessKey}`)
 	}
 }
-

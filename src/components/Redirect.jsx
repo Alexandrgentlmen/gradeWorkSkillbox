@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const ACCESS_KEY = process.env.REACT_APP_ACCESSKEY,
 	SECRET_KEY = process.env.REACT_APP_SECRETKEY,
 	REDIRECT_URL = "https://gradeskillbox.vercel.app/redirect";
-
+	// REDIRECT_URL = "urn:ietf:wg:oauth:2.0:oob";
 	
 
 export const Redirect = () => {
@@ -38,7 +38,7 @@ export const Redirect = () => {
 			return axios(options).then(response => {
 				localStorage.setItem('token', response.data.access_token);
 				if(response.data.access_token) {
-					navigate('/');
+					navigate('/', {replace: true});
 				}
 			}).catch(err => { 
 				if (err.response) { 

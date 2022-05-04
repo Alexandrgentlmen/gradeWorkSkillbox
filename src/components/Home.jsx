@@ -6,24 +6,25 @@ import uniqid from 'uniqid';
 
 import Cards from './Cards';
 import { changePage, imagesLoad } from '../redux/actions';
-import Spin from './Spin';
+
 
 function Home() {
 	const dispatch = useDispatch();
 	const images = useSelector(state => state.imagesReducer.images);
 	const pageNumber = useSelector(state => state.imagesReducer.pageNumber);
 	const searchText = useSelector(state => state.imagesReducer.searchText);
-	console.log(images)
+
 	const masonryOptions = {
 		fitWidth: false,
 		columnWidth: 350,
 		gutter: 1,
+		transitionDuration: false,
 		itemSelector: ".card",
 	};
 
 	useEffect(() => {
-		if (!searchText ) {
-			dispatch(imagesLoad());
+		if (!searchText && pageNumber === 1 ) {
+			dispatch(imagesLoad(searchText,pageNumber));
 		} else {
 			if (pageNumber !== 1) {
 				dispatch(imagesLoad(searchText, pageNumber));
@@ -41,7 +42,7 @@ function Home() {
 						dataLength={images.length}
 						next={fetchImages}
 						hasMore={true}
-						loader={<Spin />}
+						// loader={<Spin />}
 						scrollThreshold={1}
 					>
 						<Masonry className={"photo-list"}
@@ -56,9 +57,12 @@ function Home() {
 										created={image.created_at.slice(0, 10)}
 										links={image.user.links.html}
 										photoUser={image.user.profile_image.small}
-										url={image.urls.thumb} key={uniqid()}
+										url={image.urls.thumb}
+										urlFull={image.urls.regular} 
+										key={uniqid()}
 										id={image.id} totalLike={image.likes}
 										name={image.user.username} liked_by_user={image.liked_by_user}
+										
 									/>
 							))}
 						</Masonry>

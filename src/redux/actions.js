@@ -10,6 +10,9 @@ import {
 	LOAD_USER_PROFILE,
 	CHANGE_LIKE,
 	CHANGE_TOTAL_LIKE,
+	CHANGE_IMAGES_STATE,
+	MODAL_OPEN,
+	MODAL_CLOSE,
 } from "./types";
 import { imagesAPI, searchAPI } from './../api/api';
 import { unsplashApi } from "../api/authApi";
@@ -21,14 +24,18 @@ export const errorOff = () => ({ type: ERROR_DISPLAY_OFF })
 export const isSearching = () => ({ type: IS_SEARCHING })
 export const changePage = (pageNumber) => ({ type: CHANGE_CURRENT_PAGE, pageNumber })
 export const changeSearchText = (text) => ({ type: CHANGE_SEARCH_TEXT, text })
-export const resetSerchPage = () => ({ type: RESET_SEARCH_PAGE })
+export const resetSerchPage = (pageNumber) => ({ type: RESET_SEARCH_PAGE, pageNumber })
 export const changeLike = (index, id, newImageData) => ({ type: CHANGE_LIKE, index, id, newImageData })
 export const changeTotalLike = (id) => ({ type: CHANGE_TOTAL_LIKE, id })
+export const changeImagesState = () => ({ type: CHANGE_IMAGES_STATE })
+
+export const openModal = (url) => ({ type: MODAL_OPEN, url })
+export const closeModal = () => ({ type: MODAL_CLOSE })
 
 export const loadUserProfile = (userName) => {
 	return async (dispatch) => {
 		const userData = await unsplashApi.getAuthUser(userName);
-		console.log(userData);
+
 		try {
 			dispatch({
 				type: LOAD_USER_PROFILE,
@@ -42,7 +49,7 @@ export const loadUserProfile = (userName) => {
 
 export const imagesLoad = (text, pageNumber) => {
 	if (!text) {
-		console.log('dispatch (imagesLoad)');
+		console.log('dispatch (imagesLoad)', pageNumber);
 		return async (dispatch) => {
 			try {
 				dispatch(loaderOn());
@@ -66,7 +73,6 @@ export const imagesLoad = (text, pageNumber) => {
 		return async (dispatch) => {
 			try {
 				dispatch(loaderOn());
-
 				const imagesData = await searchAPI.searching(text, pageNumber);
 
 				if (pageNumber === 1) {
@@ -80,6 +86,7 @@ export const imagesLoad = (text, pageNumber) => {
 						dispatch(loaderOff());
 					}, 900)
 				} else {
+
 					setTimeout(() => {
 						dispatch({
 							type: SEARCH_IMAGE,
@@ -96,9 +103,7 @@ export const imagesLoad = (text, pageNumber) => {
 				dispatch(loaderOff());
 			}
 		}
-
 	}
-
 }
 
 export const imagesLike = (index, id) => {

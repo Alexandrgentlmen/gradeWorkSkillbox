@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { changeSearchText, imagesLoad, loadUserProfile, resetSerchPage} from '../redux/actions';
+import { changeImagesState, changeSearchText, imagesLoad, loadUserProfile, resetSerchPage} from '../redux/actions';
 import { User } from './User';
+import { Join } from './Join';
+import { LogOut } from './LogOut';
 
-
-const ACCESS_KEY = process.env.REACT_APP_ACCESSKEY,
-	REDIRECT_URL = "https://gradeskillbox.vercel.app/redirect";
-const authUrl = `https://unsplash.com/oauth/authorize?client_id=${ACCESS_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code&scope=public+read_user+write_user+write_likes`;
 
 function Header() {
 	const [searchValue, setSearchValue] = useState('');
@@ -22,13 +20,12 @@ function Header() {
 	const onSearch =(e) => {
 		e.preventDefault();
 		dispatch(resetSerchPage());
+		dispatch(changeImagesState());
 		dispatch(changeSearchText(searchValue));
 		dispatch(imagesLoad(searchValue,pageNumber));
-	
 	}
-	console.log(userProfile);
-	return (
 
+	return (
 		<header className="header">
 			<nav className="header__nav-bar flex container">
 
@@ -99,11 +96,7 @@ function Header() {
 							</i>
 						</button>
 					</li>
-					<li className="sub-nav__item">
-						<a href={authUrl} className="sub-nav__link sub-nav__btn">
-							Join
-						</a>
-					</li>
+					{userProfile ?	<LogOut /> : <Join/>}
 				</ul>
 
 			</nav>

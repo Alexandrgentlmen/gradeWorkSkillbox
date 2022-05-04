@@ -1,4 +1,4 @@
-import { IMAGES_LOAD, SEARCH_IMAGE, CHANGE_CURRENT_PAGE, RESET_SEARCH_IMAGE, IS_SEARCHING, CHANGE_SEARCH_TEXT, RESET_SEARCH_PAGE, CHANGE_LIKE, CHANGE_TOTAL_LIKE } from "./types"
+import { IMAGES_LOAD, SEARCH_IMAGE, CHANGE_CURRENT_PAGE, RESET_SEARCH_IMAGE, IS_SEARCHING, CHANGE_SEARCH_TEXT, RESET_SEARCH_PAGE, CHANGE_LIKE, CHANGE_IMAGES_STATE } from "./types"
 
 const initialState = {
 	images: [],
@@ -14,8 +14,17 @@ export const imagesReducer = (state = initialState, action) => {
 				images: [...state.images, ...action.imagesData],
 			}
 
+		case CHANGE_IMAGES_STATE:
+			console.log('CHANGE_IMAGES_STATE');
+			return {
+				...state,
+				images: [],
+			}
+
 		case RESET_SEARCH_IMAGE:
-			const imagesReset = action.imagesData
+
+			const imagesReset = action.imagesData;
+			console.log('RESET_SEARCH_IMAGE', imagesReset);
 			return {
 				...state,
 				images: [...imagesReset],
@@ -23,6 +32,7 @@ export const imagesReducer = (state = initialState, action) => {
 
 		case SEARCH_IMAGE: {
 			const imagesSearch = action.imagesData;
+			console.log('SEARCH_IMAGE', imagesSearch)
 			return {
 				...state,
 				images: [...state.images, ...imagesSearch],
@@ -45,7 +55,7 @@ export const imagesReducer = (state = initialState, action) => {
 		case RESET_SEARCH_PAGE: {
 			return {
 				...state,
-				pageNumber: 1
+				pageNumber: initialState.pageNumber
 			}
 		}
 

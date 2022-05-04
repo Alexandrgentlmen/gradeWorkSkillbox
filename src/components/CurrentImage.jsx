@@ -10,17 +10,20 @@ export const CurrentImage = () => {
 	const navigate = useNavigate();
 	const Index = images.findIndex(img => img.id === photoId);
 	const goBack = () => navigate(-1);
-	console.log(images);
 	return (
 		<div>		
 			<button className="back-link" onClick={goBack}>Go back</button>
 			
 			<Cards
 										photoUser={images[Index].user.profile_image.small}
-										url={images[Index].urls.full} key={uniqid()}
-										id={images[Index].id} totalLike={images[Index].likes}
-										name={images[Index].user.username} likeFromUser={images[Index].liked_by_user}
-										links={images[Index].user.links.html} created={images[Index].created_at.slice(0, 10)}
+										url={images[Index].urls.full}
+										key={uniqid()}
+										id={images[Index].id}
+										totalLike={images[Index].likes}
+										name={images[Index].user.username} 
+										likeFromUser={images[Index].liked_by_user}
+										links={images[Index].user.links.html} 
+										created={images[Index].created_at.slice(0, 10)}
 									/>
 		</div>
 	)

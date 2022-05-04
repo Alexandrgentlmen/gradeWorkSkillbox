@@ -10,11 +10,13 @@ import { AuthPage } from './components/AuthPage';
 import { RequireAuth } from './hoc/RequireAuth';
 import { CurrentImage } from './components/CurrentImage';
 import { Redirect } from './components/Redirect';
+import Modal from './components/Modal';
 
 function App() {
 
 	return (
 		<div className="App">
+			<Modal />
 			<Spin />
 			<Routes>
 				<Route path="auth" element={<AuthPage />} />

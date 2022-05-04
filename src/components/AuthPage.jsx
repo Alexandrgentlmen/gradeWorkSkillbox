@@ -8,17 +8,24 @@ export const AuthPage = () => {
 
 	return (
 		
-		<div className='center container'>
-			<Button
-				className = 'btn-success'
-				variant="contained"
-				color="success"
-				onClick={() => {
-					window.location.href = authUrl;
-				}}
-			>
-				Success
-			</Button>
+		<div className='wrap'>
+			<div className='outer'>
+				<div className = 'btn-success'>
+					<Button	
+						variant="contained"
+						color="success"
+						onClick={() => {
+							window.location.href = authUrl;
+						}}
+					>
+						Success
+					</Button>
+				</div>
+				<p className='outer__title'>
+					Для доступа на сайт войдите в систему Unsplash
+				</p>
+			</div>
+			
 		</div>
 	)
 }
