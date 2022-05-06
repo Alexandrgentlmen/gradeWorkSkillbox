@@ -7,20 +7,19 @@ import uniqid from 'uniqid';
 import Cards from './Cards';
 import { changePage, imagesLoad } from '../redux/actions';
 
+const masonryOptions = {
+	fitWidth: false,
+	columnWidth: 350,
+	gutter: 1,
+	transitionDuration: false,
+	itemSelector: ".card",
+};
 
 function Home() {
 	const dispatch = useDispatch();
 	const images = useSelector(state => state.imagesReducer.images);
 	const pageNumber = useSelector(state => state.imagesReducer.pageNumber);
 	const searchText = useSelector(state => state.imagesReducer.searchText);
-
-	const masonryOptions = {
-		fitWidth: false,
-		columnWidth: 350,
-		gutter: 1,
-		transitionDuration: false,
-		itemSelector: ".card",
-	};
 
 	useEffect(() => {
 		if (!searchText && pageNumber === 1 ) {
@@ -42,7 +41,6 @@ function Home() {
 						dataLength={images.length}
 						next={fetchImages}
 						hasMore={true}
-						// loader={<Spin />}
 						scrollThreshold={1}
 					>
 						<Masonry className={"photo-list"}

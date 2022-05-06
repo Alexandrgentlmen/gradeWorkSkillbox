@@ -1,6 +1,8 @@
 import  { useEffect } from 'react';
 import * as axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToken } from '../redux/actions';
 
 
 const ACCESS_KEY = process.env.REACT_APP_ACCESSKEY,
@@ -11,7 +13,8 @@ const ACCESS_KEY = process.env.REACT_APP_ACCESSKEY,
 
 export const Redirect = () => {
 	const navigate = useNavigate();
-
+	const dispatch = useDispatch();
+	const isAuth = useSelector(state => state.tokenReducer.isAuth);
 	const setToken = () => {
 		const url = new URL(window.location.href);
 		const code = url.searchParams.get('code');
@@ -36,8 +39,12 @@ export const Redirect = () => {
 
 		if (code) {
 			return axios(options).then(response => {
+				console.log(response.data.access_token);
+				
+				dispatch(addToken(response.data.access_token));
+				
 				localStorage.setItem('token', response.data.access_token);
-				if(response.data.access_token) {
+				if(isAuth) {
 					navigate('/', {replace: true});
 				}
 			}).catch(err => { 

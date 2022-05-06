@@ -12,6 +12,7 @@ function Header() {
 	const dispatch = useDispatch();
 	const pageNumber = useSelector(state => state.imagesReducer.pageNumber);
 	const userProfile = useSelector(state => state.userReducer.userProfile);
+	const isAuth = useSelector(state => state.tokenReducer.isAuth);
 
 	useEffect(() => {
 		dispatch(loadUserProfile(userProfile.username))
@@ -96,7 +97,7 @@ function Header() {
 							</i>
 						</button>
 					</li>
-					{userProfile ?	<LogOut /> : <Join/>}
+					{isAuth ?	<LogOut /> : <Join/>}
 				</ul>
 
 			</nav>

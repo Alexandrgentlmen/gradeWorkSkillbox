@@ -1,9 +1,11 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { deleteToken } from '../redux/actions';
 import { LogOutBtn } from './styles';
 
 export const LogOut = () => {
-
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	return (
@@ -11,8 +13,8 @@ export const LogOut = () => {
 			<LogOutBtn
 				onClick={(e) => {
 					e.preventDefault();
-					localStorage.clear();
-					navigate('/auth', {replace: true});
+					dispatch(deleteToken());
+					navigate('/', {replace: true});
 				}}
 			 	 className="sub-nav__link">
 				 	LogOut

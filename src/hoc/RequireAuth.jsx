@@ -1,12 +1,14 @@
 
+import { useSelector } from 'react-redux';
 import { Navigate} from 'react-router-dom'
 
 const RequireAuth = ({children}) => {
-
-	const access_token = localStorage.getItem('token');	
+	const isAuth = useSelector(state => state.tokenReducer.isAuth);
+	// const access_token = localStorage.getItem('token');	
 	
-	if(!access_token) {
-		return < Navigate to='/auth' />
+	if(!isAuth) {
+		// return < Navigate to='/auth' />
+		return < Navigate to='/' />
 	}
 	return children;
 }
