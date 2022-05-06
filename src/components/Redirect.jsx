@@ -1,16 +1,14 @@
 import  { useEffect } from 'react';
 import * as axios from "axios";
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { addToken } from '../redux/actions';
-
 
 const ACCESS_KEY = process.env.REACT_APP_ACCESSKEY,
 	SECRET_KEY = process.env.REACT_APP_SECRETKEY,
 	REDIRECT_URL = "https://gradeskillbox.vercel.app/redirect";
 	// REDIRECT_URL = "urn:ietf:wg:oauth:2.0:oob";
 	
-
 export const Redirect = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();

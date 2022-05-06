@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../redux/actions';
 import cn from 'classnames'
 
-
-
  const Modal = () => {
 	const dispatch = useDispatch();
 	const modalWindow = useSelector(state => state.modalReducer);

@@ -1,32 +1,26 @@
-
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { openModal } from '../redux/actions';
 
-import { Collect } from './Collect';
+import { CollectBtn } from './CollectBtn';
 import { Download } from './Download';
 import { Like } from './Like';
-
 
 function Cards({ index, name ,photoUser, urlReg ,url, id, totalLike, liked_by_user, links, created }) {
 
 	const dispatch = useDispatch();
-
-	return (
-		
+	return (	
 			<article className="card" >				
 				<div className="card__link d-flex">
-					<Link  to={`/${id}`}>
-						
-					<img
-						className="card__img"
-						src={url}
-						key={id}
-						alt="gallery" />
+					<Link  to={`/${id}`}>					
+						<img
+							className="card__img"
+							src={url}
+							key={id}
+							alt="gallery" />
 					</Link>
-				</div>
-				<div className="overlay">
+						<div className="overlay">
 					<span className="card__date">{created}</span> 
 					<button onClick={()=>{window.open(links, '_blank')}} className="btn--reset card__photographer d-flex">
 							<img
@@ -34,36 +28,30 @@ function Cards({ index, name ,photoUser, urlReg ,url, id, totalLike, liked_by_us
 							heigth={30}
 							width={30}
 							className="card__avatar"
-							alt="foto-author" />
-						
+							alt="foto-author" />				
 						<span className="card__name">{name}</span>
-					</button>
-					
+					</button>		
 					<div className="card__info d-flex">
 					<button
 		 				href="/"
 						className="btn--reset btn-download"
-						onClick={()=>{
+						onClick={()=>{					
 							dispatch(openModal(urlReg));
 						}}
 					>
 						<Download/>
-					</button>
-						
-						<Collect/>
+					</button>						
+						<CollectBtn/>
 						<Like
 						index={index}
 						id={id}
 						totalLike={totalLike}
 						liked_by_user={liked_by_user}/>
 					</div>
+				</div>				
 				</div>
-
-			</article>
-
-		
+			</article>	
 	);
 }
-
 export default Cards;
 

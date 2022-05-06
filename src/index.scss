@@ -145,13 +145,18 @@ body {
 }
 
 
-.btn-download svg {
+.btn-download {
+	z-index: 10;
 
-	transition: 0.25s;
+	svg {
 
-	&:hover {
-		fill: #05a081;
-		transition: 0.15s;
+		transition: 0.25s;
+
+		&:hover {
+			fill: #05a081;
+			transition: 0.15s;
+		}
+
 	}
 
 }
@@ -204,6 +209,12 @@ body {
 	margin-right: -2.15rem;
 
 	&__item {
+		text-align: center;
+		margin-right: 2.15rem;
+	}
+
+	&__item-btn {
+		width: 113px;
 		margin-right: 2.15rem;
 	}
 
@@ -232,6 +243,21 @@ body {
 			transition: color 0.15s;
 		}
 	}
+}
+
+.collect-svg {
+	height: 24px;
+	width: 24px;
+	transition: 0.25s;
+	fill: white;
+}
+
+.download-svg {
+	height: 100px;
+	width: 100px;
+	transition: 0.25s;
+	fill: white;
+
 }
 
 .back-link {
@@ -292,7 +318,6 @@ body {
 
 }
 
-
 .card {
 	position: relative;
 	font-size: 23px;
@@ -328,17 +353,25 @@ body {
 	}
 
 	&:hover .overlay:before {
-		bottom: 0;
+		bottom: 6px;
 		opacity: 1;
 		transition: all .2s;
 	}
 
 	&__img {
 		cursor: pointer;
-		display: flex;
+		// display: flex;
 		width: 100%;
-		height: auto;
-		object-fit: cover;
+		// height: auto;
+		// object-fit: cover;
+
+	}
+
+	&__img-sample {
+		max-height: 1120px;
+		cursor: pointer;
+		width: 100%;
+		object-fit: contain;
 	}
 
 	&__name {
@@ -375,6 +408,14 @@ body {
 
 	&__link {
 		width: 100%;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		cursor: default;
+	}
+
+	&__link-sample {
+		position: relative;
 		left: 0;
 		bottom: 0;
 		right: 0;
@@ -459,6 +500,15 @@ body {
 		height: 18px;
 
 	}
+}
+
+.card-sample {
+	position: relative;
+	font-size: 23px;
+	margin: 1px 152px 1px;
+	display: inline-block;
+	min-width: 340px;
+	transition: transform 0.5s ease-in-out;
 }
 
 .btn-like {
@@ -554,7 +604,7 @@ body {
 .modal__content {
 
 	height: 55vh;
-	width: 65vw;
+	// width: 65vw;
 	padding: 20px;
 	border-radius: 5px;
 	background-color: #05a081;

@@ -1,34 +1,12 @@
 import styled from 'styled-components';
-
 export const SvgHeart = styled.svg`
-
 height: 24px;
 width: 24px;
 transition: 0.25s;
 fill:  ${props => props.liked_by_user ? '#05a081' : 'white'};
 
 `;
-
-export const SvgCollect = styled.svg`
-
-height: 24px;
-width: 24px;
-transition: 0.25s;
-fill: white;
-
-`;
-
-export const SvgDownload = styled.svg`
-
-height: 100px;
-width: 100px;
-transition: 0.25s;
-fill: white;
-
-`;
-
 export const JoinBtn = styled.a`
-
 	margin-top: 0;
 	margin-bottom: 0;
 	display: block;
@@ -39,12 +17,16 @@ export const JoinBtn = styled.a`
 	border-radius: 4px;
 	background: #05a081;
 	transition: transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s;
-
+	&:hover,
+  &:focus {
+		color: #05a081;
+    background: #fff;
+		transition: color 0.15s, background 0.15s;
 `;
 
 export const LogOutBtn = styled.a`
 
-	color: #818181;
+	color: #232A34;
 	margin-top: 0;
 	margin-bottom: 0;
 	display: block;
@@ -54,13 +36,15 @@ export const LogOutBtn = styled.a`
 	border: none;
 	border-radius: 4px;
 	background: #fff;
-	transition: color 0.15s; , background 0.15s , transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s;
+	transition: color 1.25s , background 0.25s ;
+	transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s;
 	cursor: pointer;
 
 	&:hover,
   &:focus {
-		color: #fff;
-    background: #05a081;
-		transition: color 0.15s, background 0.15s;
+		color: #05a081;
+    background: #232A34;
+		transition: color 0.15s, background 0.25s;
+		transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s;
   }
 `;

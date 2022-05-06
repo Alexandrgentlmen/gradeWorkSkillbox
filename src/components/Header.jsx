@@ -5,7 +5,9 @@ import { changeImagesState, changeSearchText, imagesLoad, loadUserProfile, reset
 import { User } from './User';
 import { Join } from './Join';
 import { LogOut } from './LogOut';
-
+import SearchBtnSvg from './SearchBtnSvg';
+import LogoSvg from './LogoSvg';
+import DotBtnSvg from './DotBtnSvg';
 
 function Header() {
 	const [searchValue, setSearchValue] = useState('');
@@ -32,10 +34,7 @@ function Header() {
 
 				<Link className="header__logo" to="/" title="Photer Foto">
 					<div className="header__logo_img">
-						<svg xmlns="http://www.w3.org/2000/svg" width={32} height={32} viewBox="0 0 32 32">
-							<path d="M2 0h28a2 2 0 0 1 2 2v28a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" fill="#05A081"></path>
-							<path d="M23 21h3.863v-3.752h1.167a3.124 3.124 0 1 0 0-6.248H13v10zm5.863 2H11V9h7.03a5.124 5.124 0 0 1 .833 10.18V23z" fill="#fff"></path>
-						</svg>
+						<LogoSvg/>
 					</div>
 					<div className="header__logo_text">PhotoEr</div>
 				</Link>
@@ -67,10 +66,7 @@ function Header() {
 								title="Search for stock photos"
 							>
 								<i className="search-bar__svg-icon svg-icon">
-									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-										<path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
-										</path>
-									</svg>
+								<SearchBtnSvg/>
 								</i>
 							</button>
 						</div>
@@ -90,10 +86,7 @@ function Header() {
 					<li className="sub-nav__item">
 						<button className="sub-nav__link dot-btn btn--reset">
 							<i className="d-flex align-center">
-								<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24">
-									<path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
-									</path>
-								</svg>
+								<DotBtnSvg/>
 							</i>
 						</button>
 					</li>

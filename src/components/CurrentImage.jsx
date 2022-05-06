@@ -2,7 +2,8 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import uniqid from 'uniqid';
-import Cards from './Cards';
+import Card from './Card';
+
 
 export const CurrentImage = () => {
 	const images = useSelector(state => state.imagesReducer.images);
@@ -14,7 +15,7 @@ export const CurrentImage = () => {
 		<div>		
 			<button className="back-link" onClick={goBack}>Go back</button>
 			
-			<Cards
+			<Card
 										photoUser={images[Index].user.profile_image.small}
 										url={images[Index].urls.full}
 										key={uniqid()}

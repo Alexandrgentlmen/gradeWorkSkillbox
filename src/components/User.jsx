@@ -1,18 +1,13 @@
 import React from 'react'
-// import { useSelector } from 'react-redux';
-
 export const User = ({user}) => {
-
 	if (user.id) {
-		return (
-			
+		return (		
 				<a href="/" className="card__user">
 					<img src={user.profile_image.medium} 
 					heigth={50} width={50} 
 					className="card__avatar card__avatar_square" 
 					alt="foto-author" />
-				</a>
-			
+				</a>	
 		)
 	} else {
 		return null

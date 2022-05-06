@@ -9,12 +9,13 @@ export const LogOut = () => {
 	const navigate = useNavigate();
 
 	return (
-		<li className="sub-nav__item">
+		<li className="sub-nav__item sub-nav__item-btn">
 			<LogOutBtn
 				onClick={(e) => {
 					e.preventDefault();
 					dispatch(deleteUserProfile());
 					dispatch(deleteToken());
+					localStorage.clear();
 					navigate('/', {replace: true});
 				}}
 			 	 className="sub-nav__link">
