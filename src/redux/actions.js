@@ -15,6 +15,7 @@ import {
 	MODAL_CLOSE,
 	ADD_TOKEN,
 	DELETE_TOKEN,
+	DELETE_USER_PROFILE,
 } from "./types";
 import { imagesAPI, searchAPI } from './../api/api';
 import { unsplashApi } from "../api/authApi";
@@ -37,6 +38,7 @@ export const closeModal = () => ({ type: MODAL_CLOSE })
 export const addToken = (access_token) => ({ type: ADD_TOKEN, access_token })
 export const deleteToken = () => ({ type: DELETE_TOKEN })
 
+export const deleteUserProfile = () => ({ type: DELETE_USER_PROFILE })
 export const loadUserProfile = (userName) => {
 	return async (dispatch) => {
 		const userData = await unsplashApi.getAuthUser(userName);

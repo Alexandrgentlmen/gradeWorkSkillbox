@@ -1,4 +1,4 @@
-import { LOAD_USER_PROFILE } from "./types";
+import { DELETE_USER_PROFILE, LOAD_USER_PROFILE } from "./types";
 const initialState = {
 
 	userProfile: [],
@@ -8,6 +8,10 @@ export const userReducer = (state = initialState, action) => {
 		case LOAD_USER_PROFILE:
 			return {
 				userProfile: action.userData
+			}
+		case DELETE_USER_PROFILE:
+			return {
+				userProfile: []
 			}
 
 		default:
