@@ -11,7 +11,7 @@ export const userReducer = (state = initialState, action) => {
 			}
 		case DELETE_USER_PROFILE:
 			return {
-				userProfile: []
+				userProfile: initialState.userProfile
 			}
 
 		default:

@@ -15,7 +15,7 @@ export const tokenReducer = (state = initialState, action) => {
 		case DELETE_TOKEN:
 			return {
 				isAuth: false,
-				token: ''
+				token: initialState.userProfile
 			}
 
 		default:
