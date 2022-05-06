@@ -14,7 +14,7 @@ const ACCESS_KEY = process.env.REACT_APP_ACCESSKEY,
 export const Redirect = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const isAuth = useSelector(state => state.tokenReducer.isAuth);
+
 	const setToken = () => {
 		const url = new URL(window.location.href);
 		const code = url.searchParams.get('code');
@@ -40,13 +40,9 @@ export const Redirect = () => {
 		if (code) {
 			return axios(options).then(response => {
 				console.log(response.data.access_token);
-				
-				dispatch(addToken(response.data.access_token));
-				
+				dispatch(addToken(response.data.access_token));				
 				localStorage.setItem('token', response.data.access_token);
-				if(isAuth) {
-					navigate('/', {replace: true});
-				}
+					navigate('/', {replace: true});	
 			}).catch(err => { 
 				if (err.response) { 
 					console.log('err.response', err.response)
