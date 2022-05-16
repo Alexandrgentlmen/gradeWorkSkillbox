@@ -1,4 +1,4 @@
-import  { useEffect } from 'react';
+import  { useCallback, useEffect } from 'react';
 import * as axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch} from 'react-redux';
@@ -13,10 +13,9 @@ export const Redirect = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
-	const setToken = () => {
+	const setToken = useCallback(() => {
 		const url = new URL(window.location.href);
 		const code = url.searchParams.get('code');
-
 
 		const data = {
 			client_id: ACCESS_KEY,
@@ -36,8 +35,7 @@ export const Redirect = () => {
 		}
 
 		if (code) {
-			return axios(options).then(response => {
-				
+			return axios(options).then(response => {	
 				const token = response.data.access_token;
 				dispatch(addToken(token));				
 				localStorage.setItem('token', token);
@@ -52,11 +50,11 @@ export const Redirect = () => {
 				}
 			});
 		}	
-	}
+	}, [dispatch,navigate])
 
 	useEffect(() => {
     setToken();
-  }, []);
+  }, [setToken]);
 
 	return (
 		<></>

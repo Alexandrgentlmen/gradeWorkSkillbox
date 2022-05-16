@@ -2,7 +2,7 @@ import { IMAGES_LOAD, SEARCH_IMAGE, CHANGE_CURRENT_PAGE, RESET_SEARCH_IMAGE, IS_
 
 const initialState = {
 	images: [],
-	currentImage: [],
+	resetImage: [],
 	pageNumber: 1,
 	searchText: '',
 	isSearching: false,
@@ -26,7 +26,7 @@ export const imagesReducer = (state = initialState, action) => {
 
 			return {
 				...state,
-				images: initialState.currentImage,
+				images: initialState.resetImage,
 			}
 
 		case CHANGE_IMAGES_STATE:

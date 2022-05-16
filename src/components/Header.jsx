@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { changeImagesState, changeSearchText, imagesLoad , loadUserProfile, resetSerchPage } from '../redux/actions';
+import { addToken, changeImagesState, changeSearchText, deleteUserProfile, imagesLoad , loadUserProfile, resetSerchPage } from '../redux/actions';
 import { User } from './User';
 import { Join } from './Join';
 import { LogOut } from './LogOut';
@@ -9,7 +9,7 @@ import SearchBtnSvg from './SearchBtnSvg';
 import LogoSvg from './LogoSvg';
 import DotBtnSvg from './DotBtnSvg';
 
-function Header() {
+const Header = () => {
 	const [searchValue, setSearchValue] = useState('');
 	const dispatch = useDispatch();
 	const pageNumber = useSelector(state => state.imagesReducer.pageNumber);
@@ -17,7 +17,13 @@ function Header() {
 	const isAuth = useSelector(state => state.tokenReducer.isAuth);
 
 	useEffect(() => {
-		dispatch(loadUserProfile(userProfile.username))
+		dispatch(loadUserProfile(userProfile.username));
+		const token = localStorage.getItem('token');
+		if (token) {
+			dispatch(addToken(token));
+		} else {
+			dispatch(deleteUserProfile());
+		}
 	},[userProfile.username, dispatch])
 	
 	const onSearch =(e) => {
@@ -31,14 +37,12 @@ function Header() {
 	return (
 		<header className="header">
 			<nav className="header__nav-bar flex container">
-
 				<Link className="header__logo" to="/" title="Photer Foto">
 					<div className="header__logo_img">
 						<LogoSvg/>
 					</div>
 					<div className="header__logo_text">PhotoEr</div>
 				</Link>
-
 				<div className="header__search-bar">
 					<form className="search-bar" autoComplete="off">
 						<div className="search-bar__container">
@@ -84,7 +88,6 @@ function Header() {
 						<a className="sub-nav__link" href="/upload/">Upload</a>
 					</li>
 					<li className="sub-nav__item">
-
 						<button className="sub-nav__link dot-btn btn--reset">
 							<i className="d-flex align-center">
 								<DotBtnSvg/>
@@ -93,15 +96,12 @@ function Header() {
 					</li>
 					<li className="sub-nav__item sub-nav__item-btn">
 					{isAuth ?	<LogOut /> : <Join/>}
-					</li>
-					
+					</li>			
 				</ul>
-
 			</nav>
 			<div className="header__nav-bar_padding"></div>
 		</header>
-
 	);
 }
 
-export default Header;
+export {Header};

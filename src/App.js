@@ -7,6 +7,7 @@ import { AuthPage } from './components/AuthPage';
 import { CurrentImage } from './components/CurrentImage';
 import { Redirect } from './components/Redirect';
 import Modal from './components/Modal';
+import { RequireAuth } from './hoc/RequireAuth';
 
 function App() {
 
@@ -18,7 +19,11 @@ function App() {
 				<Route path="redirect" element={<Redirect />} />
 				<Route path="/" element={<Layout />}>
 					<Route exact index element={<Home />} />
-					<Route path=":photoId" element={<CurrentImage />} />
+					<Route path=":photoId" element={
+						<RequireAuth>
+							<CurrentImage />
+						</RequireAuth>
+					} />
 					<Route path="*" element={<NotFound />} />
 				</Route>
 			</Routes>

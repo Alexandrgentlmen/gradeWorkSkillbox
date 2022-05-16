@@ -26,14 +26,6 @@ function Home() {
 		dispatch(imagesLoad(searchText, pageNumber));
 	}, [searchText, pageNumber, dispatch]);
 
-	// useEffect(() => {
-	// 	dispatch(imagesLoad());
-	// }, [ dispatch]);
-
-	// useEffect(() => {
-	// 	dispatch(imagesSearch(searchText, pageNumber));
-	// }, [searchText, pageNumber, dispatch]);
-
 	const fetchImages = () => {
 		dispatch(changePage());
 	}

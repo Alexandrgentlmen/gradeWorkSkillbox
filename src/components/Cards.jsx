@@ -11,37 +11,37 @@ function Cards({ index, name ,photoUser, urlReg ,url, id, totalLike, liked_by_us
 	const dispatch = useDispatch();
 	
 	return (	
-			<article className="card" >				
-				<div className="card__link d-flex">
-					<Link  to={`/${id}`}>					
-						<img
-							className="card__img"
-							src={url}
-							key={id}
-							alt="gallery" />
-					</Link>
-						<div className="overlay">
-					<span className="card__date">{created}</span> 
-					<ButtonCardPhotogr links={links} name={name} photoUser={photoUser}/>	
-					<div className="card__info d-flex">
-					<button
-		 				href="/"
-						className="btn--reset btn-download"
-						onClick={()=>{					
-							dispatch(openModal(urlReg));
-						}}
-					>
-						<Download/>
-					</button>						
-						<CollectBtn/>
-						<Like
-						index={index}
-						id={id}
-						totalLike={totalLike}
-						liked_by_user={liked_by_user}/>
+			<article className="card" >	
+				<Link to={`/${id}`}>				
+					<div className="card__link d-flex">	
+								<img
+									className="card__img"
+									src={url}
+									key={id}
+									alt="gallery" />
+								<div className="overlay">
+							<span className="card__date">{created}</span> 
+							<ButtonCardPhotogr links={links} name={name} photoUser={photoUser}/>	
+							<div className="card__info d-flex">
+								<button
+									href="/"
+									className="btn--reset btn-download"
+									onClick={()=>{					
+										dispatch(openModal(urlReg));
+									}}
+								>
+									<Download/>
+								</button>						
+									<CollectBtn/>
+									<Like
+										index={index}
+										id={id}
+										totalLike={totalLike}
+										liked_by_user={liked_by_user}/>
+							</div>
+						</div>				
 					</div>
-				</div>				
-				</div>
+				</Link>
 			</article>	
 	);
 }

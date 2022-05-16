@@ -8,12 +8,10 @@ const Like = ({index, id,totalLike,liked_by_user}) => {
 	const dispatch = useDispatch();
 	const isAuth = localStorage.getItem('token');
 	const navigate = useNavigate();
-	return (
-		
+	return (		
 		<button 
 				className="btn-like card__btn-like btn--reset"
-				onClick={ (e) =>{
-					e.preventDefault();
+				onClick={ () =>{				
 					if(isAuth) {
 						liked_by_user ? dispatch(imagesUnlike(index,id)) : dispatch(imagesLike(index,id));	
 					} else {

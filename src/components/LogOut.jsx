@@ -9,7 +9,7 @@ export const LogOut = () => {
 	const navigate = useNavigate();
 
 	return (
-		<li className="sub-nav__item sub-nav__item-btn">
+		
 			<LogOutBtn
 				onClick={(e) => {
 					e.preventDefault();
@@ -23,6 +23,6 @@ export const LogOut = () => {
 			 	 className="sub-nav__link">
 				 	LogOut
 			</LogOutBtn>
-		</li>
+		
 	)
 }

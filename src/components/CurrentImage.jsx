@@ -11,27 +11,23 @@ export const CurrentImage = () => {
 	const images = useSelector(state => state.imagesReducer.images);
 	let isFetch = useSelector(state => state.appReducer.isFetch);
 	useEffect( ()=> {
-		
 	 dispatch(loadSingleImage(photoId));
-	 
 	},[ dispatch,photoId]);
-
-	console.log(images)
 
 	return (
 		<div>		
 			<Link className="back-link" to='/'>Go back</Link>
 	{	isFetch ?
 		<Card 
-										photoUser={images[0].user.profile_image.small}
-										url={images[0].urls.full}
-										id={images[0].id}
-										totalLike={images[0].likes}
-										name={images[0].user.username} 
-										liked_by_user={images[0].liked_by_user}
-										links={images[0].user.links.html}
-										urlReg={images[0].urls.regular}  	
-										created={images[0].created_at.slice(0, 10)}
+				photoUser={images[0].user.profile_image.small}
+				url={images[0].urls.full}
+				id={images[0].id}
+				totalLike={images[0].likes}
+				name={images[0].user.username} 
+				liked_by_user={images[0].liked_by_user}
+				links={images[0].user.links.html}
+				urlReg={images[0].urls.regular}  	
+				created={images[0].created_at.slice(0, 10)}
 		/> :
 		<Loader/>	
 	}
