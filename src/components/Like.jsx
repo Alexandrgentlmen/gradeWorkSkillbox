@@ -1,12 +1,12 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { imagesLike, imagesUnlike } from '../redux/actions';
 import LikeSvg from './LikeSvg';
 
 const Like = ({index, id,totalLike,liked_by_user}) => {
 	const dispatch = useDispatch();
-	const isAuth = useSelector(state => state.tokenReducer.isAuth);
+	const isAuth = localStorage.getItem('token');
 	const navigate = useNavigate();
 	return (
 		

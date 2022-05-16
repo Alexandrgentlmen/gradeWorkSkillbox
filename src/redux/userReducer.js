@@ -7,11 +7,13 @@ export const userReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case LOAD_USER_PROFILE:
 			return {
+				...state,
 				userProfile: action.userData
 			}
 		case DELETE_USER_PROFILE:
 			return {
-				userProfile: initialState.userProfile
+				...state,
+				userProfile: []
 			}
 
 		default:

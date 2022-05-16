@@ -8,12 +8,12 @@ const authUrl = `https://unsplash.com/oauth/authorize?client_id=${ACCESS_KEY}&re
 
 export const Join = () => {
 	return (
-		<li className="sub-nav__item sub-nav__item-btn">
+		
 			<JoinBtn
-				 href={authUrl}
-			 	 className="sub-nav__link">
-				Join
+				  href={authUrl}
+			 	  className="sub-nav__link">
+				  Join
 			</JoinBtn>
-		</li>
+	
 	)
 }

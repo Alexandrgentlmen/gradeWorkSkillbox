@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { openModal } from '../redux/actions';
+import { ButtonCardPhotogr } from './ButtonCardPhotogr';
 import { CollectBtn } from './CollectBtn';
 import { Download } from './Download';
 import { Like } from './Like';
@@ -20,17 +21,7 @@ function Card({ index, name ,photoUser, urlReg ,url, id, totalLike, liked_by_use
 						alt="gallery" />
 					<div className="overlay">
 						<span className="card__date">{created}</span> 
-						<button onClick={()=>{window.open(links, '_blank')}} className="btn--reset card__photographer d-flex">
-								<img
-								src={photoUser}
-								heigth={30}
-								width={30}
-								className="card__avatar"
-								alt="foto-author" />
-							
-							<span className="card__name">{name}</span>
-						</button>
-						
+						<ButtonCardPhotogr links={links} name={name} photoUser={photoUser}/>			
 						<div className="card__info d-flex">
 						<button
 							href="/"

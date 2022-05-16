@@ -1,11 +1,13 @@
-import { IMAGES_LOAD, SEARCH_IMAGE, CHANGE_CURRENT_PAGE, RESET_SEARCH_IMAGE, IS_SEARCHING, CHANGE_SEARCH_TEXT, RESET_SEARCH_PAGE, CHANGE_LIKE, CHANGE_IMAGES_STATE } from "./types"
+import { IMAGES_LOAD, SEARCH_IMAGE, CHANGE_CURRENT_PAGE, RESET_SEARCH_IMAGE, IS_SEARCHING, CHANGE_SEARCH_TEXT, RESET_SEARCH_PAGE, CHANGE_LIKE, CHANGE_IMAGES_STATE, SINGLE_IMAGES_LOAD, SINGLE_IMAGES_CLEAN } from "./types"
 
 const initialState = {
 	images: [],
+	currentImage: [],
 	pageNumber: 1,
 	searchText: '',
 	isSearching: false,
 }
+
 export const imagesReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case IMAGES_LOAD:
@@ -13,18 +15,28 @@ export const imagesReducer = (state = initialState, action) => {
 				...state,
 				images: [...state.images, ...action.imagesData],
 			}
+		case SINGLE_IMAGES_LOAD:
+
+			return {
+				...state,
+				images: [action.imagesData],
+			}
+
+		case SINGLE_IMAGES_CLEAN:
+
+			return {
+				...state,
+				images: initialState.currentImage,
+			}
 
 		case CHANGE_IMAGES_STATE:
-			console.log('CHANGE_IMAGES_STATE');
 			return {
 				...state,
 				images: [],
 			}
 
 		case RESET_SEARCH_IMAGE:
-
 			const imagesReset = action.imagesData;
-			console.log('RESET_SEARCH_IMAGE', imagesReset);
 			return {
 				...state,
 				images: [...imagesReset],
@@ -32,7 +44,6 @@ export const imagesReducer = (state = initialState, action) => {
 
 		case SEARCH_IMAGE: {
 			const imagesSearch = action.imagesData;
-			console.log('SEARCH_IMAGE', imagesSearch)
 			return {
 				...state,
 				images: [...state.images, ...imagesSearch],
@@ -55,7 +66,7 @@ export const imagesReducer = (state = initialState, action) => {
 		case RESET_SEARCH_PAGE: {
 			return {
 				...state,
-				pageNumber: initialState.pageNumber
+				pageNumber: 1
 			}
 		}
 
@@ -73,25 +84,18 @@ export const imagesReducer = (state = initialState, action) => {
 			const imageID = action.id;
 			const imageIndex = imagesList.findIndex(img => img.id === imageID);
 			const likedPhoto = action.newImageData.photo;
-
 			const newImageList = imagesList.map((item) => {
 				if (item.id === imagesList[imageIndex].id) {
-					console.log('CHANGE_LIKE NEW OBJECT', likedPhoto);
 					return likedPhoto
 				} else {
 					return item
 				}
-
-			})
-
-
+			});
 			return {
 				...state,
 				images: [...newImageList]
 			}
 		}
-
-
 		default:
 			return state;
 	}

@@ -8,6 +8,17 @@ export const imagesAPI = {
 		return axios.get(`${apiRoot}/photos/random?client_id=${accessKey}&count=10`)
 	},
 
+	getPhotoById(id) {
+		return fetch(`${apiRoot}/photos/${id}`, {
+			method: 'GET',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + localStorage.getItem('token')
+			},
+		}).then(response => response.json());
+	},
+
 	getLikePhoto(id) {
 		return fetch(`${apiRoot}/photos/${id}/like`, {
 			method: 'POST',
@@ -18,6 +29,7 @@ export const imagesAPI = {
 			},
 		}).then(response => response.json());
 	},
+
 	deleteLikePhoto(id) {
 		return fetch(`${apiRoot}/photos/${id}/like`, {
 			method: 'DELETE',

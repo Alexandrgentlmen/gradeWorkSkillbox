@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import Masonry from "react-masonry-component";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import uniqid from 'uniqid';
-
 import Cards from './Cards';
-import { changePage, imagesLoad } from '../redux/actions';
+import { changePage, fetchingOff, imagesLoad  } from '../redux/actions';
+import Spin from './Spin';
 
 const masonryOptions = {
 	fitWidth: false,
@@ -22,25 +22,29 @@ function Home() {
 	const searchText = useSelector(state => state.imagesReducer.searchText);
 
 	useEffect(() => {
-		if (!searchText && pageNumber === 1 ) {
-			dispatch(imagesLoad(searchText,pageNumber));
-		} else {
-			if (pageNumber !== 1) {
-				dispatch(imagesLoad(searchText, pageNumber));
-			}
-		}
+		dispatch(fetchingOff());
+		dispatch(imagesLoad(searchText, pageNumber));
 	}, [searchText, pageNumber, dispatch]);
 
+	// useEffect(() => {
+	// 	dispatch(imagesLoad());
+	// }, [ dispatch]);
+
+	// useEffect(() => {
+	// 	dispatch(imagesSearch(searchText, pageNumber));
+	// }, [searchText, pageNumber, dispatch]);
+
 	const fetchImages = () => {
-		dispatch(changePage(pageNumber));
+		dispatch(changePage());
 	}
 
 	return (
-				<>				
+				<> 			
 					<InfiniteScroll
 						dataLength={images.length}
 						next={fetchImages}
 						hasMore={true}
+						loader={<Spin/>}
 						scrollThreshold={1}
 					>
 						<Masonry className={"photo-list"}
@@ -59,8 +63,8 @@ function Home() {
 										urlReg={image.urls.regular} 
 										key={uniqid()}
 										id={image.id} totalLike={image.likes}
-										name={image.user.username} liked_by_user={image.liked_by_user}
-										
+										name={image.user.username}
+										liked_by_user={image.liked_by_user}									
 									/>
 							))}
 						</Masonry>

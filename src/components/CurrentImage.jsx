@@ -1,32 +1,40 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
-import uniqid from 'uniqid';
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
+import { loadSingleImage } from '../redux/actions';
 import Card from './Card';
-
+import Loader from './Loader';
 
 export const CurrentImage = () => {
-	const images = useSelector(state => state.imagesReducer.images);
+	const dispatch = useDispatch();
 	const { photoId } = useParams();
-	const navigate = useNavigate();
-	const Index = images.findIndex(img => img.id === photoId);
-	const goBack = () => navigate(-1);
+	const images = useSelector(state => state.imagesReducer.images);
+	let isFetch = useSelector(state => state.appReducer.isFetch);
+	useEffect( ()=> {
+		
+	 dispatch(loadSingleImage(photoId));
+	 
+	},[ dispatch,photoId]);
+
+	console.log(images)
+
 	return (
 		<div>		
-			<button className="back-link" onClick={goBack}>Go back</button>
-			
-			<Card
-										photoUser={images[Index].user.profile_image.small}
-										url={images[Index].urls.full}
-										key={uniqid()}
-										id={images[Index].id}
-										totalLike={images[Index].likes}
-										name={images[Index].user.username} 
-										liked_by_user={images[Index].liked_by_user}
-										links={images[Index].user.links.html}
-										urlReg={images[Index].urls.regular}  
-										created={images[Index].created_at.slice(0, 10)}
-									/>
+			<Link className="back-link" to='/'>Go back</Link>
+	{	isFetch ?
+		<Card 
+										photoUser={images[0].user.profile_image.small}
+										url={images[0].urls.full}
+										id={images[0].id}
+										totalLike={images[0].likes}
+										name={images[0].user.username} 
+										liked_by_user={images[0].liked_by_user}
+										links={images[0].user.links.html}
+										urlReg={images[0].urls.regular}  	
+										created={images[0].created_at.slice(0, 10)}
+		/> :
+		<Loader/>	
+	}
 		</div>
 	)
 }

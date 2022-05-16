@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { changeImagesState, changeSearchText, imagesLoad, loadUserProfile, resetSerchPage} from '../redux/actions';
+import { changeImagesState, changeSearchText, imagesLoad , loadUserProfile, resetSerchPage } from '../redux/actions';
 import { User } from './User';
 import { Join } from './Join';
 import { LogOut } from './LogOut';
@@ -19,13 +19,13 @@ function Header() {
 	useEffect(() => {
 		dispatch(loadUserProfile(userProfile.username))
 	},[userProfile.username, dispatch])
-
+	
 	const onSearch =(e) => {
 		e.preventDefault();
 		dispatch(resetSerchPage());
 		dispatch(changeImagesState());
 		dispatch(changeSearchText(searchValue));
-		dispatch(imagesLoad(searchValue,pageNumber));
+		dispatch(imagesLoad(searchValue, pageNumber));
 	}
 
 	return (
@@ -72,7 +72,7 @@ function Header() {
 						</div>
 					</form>
 				</div>
-				<User user={userProfile}/>
+			{userProfile ? <User user={userProfile}/> : null }
 				<ul className="header__sub-nav sub-nav">
 					<li className="sub-nav__item">
 						<a className="sub-nav__link" href="/discover/">Explore</a>
@@ -84,13 +84,17 @@ function Header() {
 						<a className="sub-nav__link" href="/upload/">Upload</a>
 					</li>
 					<li className="sub-nav__item">
+
 						<button className="sub-nav__link dot-btn btn--reset">
 							<i className="d-flex align-center">
 								<DotBtnSvg/>
 							</i>
 						</button>
 					</li>
+					<li className="sub-nav__item sub-nav__item-btn">
 					{isAuth ?	<LogOut /> : <Join/>}
+					</li>
+					
 				</ul>
 
 			</nav>

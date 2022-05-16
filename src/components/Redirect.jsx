@@ -16,7 +16,7 @@ export const Redirect = () => {
 	const setToken = () => {
 		const url = new URL(window.location.href);
 		const code = url.searchParams.get('code');
-		console.log(code);
+
 
 		const data = {
 			client_id: ACCESS_KEY,
@@ -37,9 +37,10 @@ export const Redirect = () => {
 
 		if (code) {
 			return axios(options).then(response => {
-				console.log(response.data.access_token);
-				dispatch(addToken(response.data.access_token));				
-				localStorage.setItem('token', response.data.access_token);
+				
+				const token = response.data.access_token;
+				dispatch(addToken(token));				
+				localStorage.setItem('token', token);
 					navigate('/', {replace: true});	
 			}).catch(err => { 
 				if (err.response) { 
