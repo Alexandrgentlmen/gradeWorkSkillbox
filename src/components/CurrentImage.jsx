@@ -8,26 +8,27 @@ import Loader from './Loader';
 export const CurrentImage = () => {
 	const dispatch = useDispatch();
 	const { photoId } = useParams();
-	const images = useSelector(state => state.imagesReducer.images);
+	const image = useSelector(state => state.currentPageReducer.image);
 	let isFetch = useSelector(state => state.appReducer.isFetch);
 	useEffect( ()=> {
 	 dispatch(loadSingleImage(photoId));
 	},[ dispatch,photoId]);
+	
 
 	return (
 		<div>		
 			<Link className="back-link" to='/'>Go back</Link>
 	{	isFetch ?
 		<Card 
-				photoUser={images[0].user.profile_image.small}
-				url={images[0].urls.full}
-				id={images[0].id}
-				totalLike={images[0].likes}
-				name={images[0].user.username} 
-				liked_by_user={images[0].liked_by_user}
-				links={images[0].user.links.html}
-				urlReg={images[0].urls.regular}  	
-				created={images[0].created_at.slice(0, 10)}
+				photoUser={image.user.profile_image.small}
+				url={image.urls.full}
+				id={image.id}
+				totalLike={image.likes}
+				name={image.user.username} 
+				liked_by_user={image.liked_by_user}
+				links={image.user.links.html}
+				urlReg={image.urls.regular}  	
+				created={image.created_at.slice(0, 10)}
 		/> :
 		<Loader/>	
 	}

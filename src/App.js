@@ -9,6 +9,8 @@ import { Redirect } from './components/Redirect';
 import Modal from './components/Modal';
 import { RequireAuth } from './hoc/RequireAuth';
 
+
+
 function App() {
 
 	return (

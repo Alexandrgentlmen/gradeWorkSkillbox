@@ -1,13 +1,14 @@
-import { Navigate, useLocation } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import { useEffect } from 'react';
 
 const RequireAuth = ({children}) => {
-	const location = useLocation();
+	const navigate = useNavigate();
 	const isAuth = localStorage.getItem('token');
 
-	if (!isAuth) {
-		return <Navigate to='/auth' state={{from: location}}/>
-	}
+	useEffect(()=>{
+		!isAuth && navigate('/auth', {replace: true});
+	})
+
 	
 	return children;
 	

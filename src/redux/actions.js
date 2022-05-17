@@ -78,16 +78,19 @@ export const loadSingleImage = (id) => {
 
 export const imagesLike = (index, id) => {
 	return async (dispatch) => {
+		dispatch(loaderOn());
 		const newImageData = await imagesAPI.getLikePhoto(id);
 		dispatch(changeLike(index, id, newImageData));
-
+		dispatch(loaderOff());
 	}
 }
 
 export const imagesUnlike = (index, id) => {
 	return async (dispatch) => {
+		dispatch(loaderOn());
 		const newImageData = await imagesAPI.deleteLikePhoto(id);
 		dispatch(changeLike(index, id, newImageData));
+		dispatch(loaderOff());
 	}
 }
 
@@ -95,6 +98,7 @@ export const imagesLoad = (text, pageNumber) => {
 	if (!text) {
 		console.log('dispatch (imagesLoad)', pageNumber, text);
 		return async (dispatch) => {
+			dispatch(fetchingOff());
 			try {
 				dispatch(loaderOn());
 				const imagesData = await imagesAPI.getPhotoData();
@@ -112,6 +116,7 @@ export const imagesLoad = (text, pageNumber) => {
 		}
 	} else {
 		return async (dispatch) => {
+			dispatch(fetchingOff());
 			try {
 				dispatch(loaderOn());
 				const imagesData = await searchAPI.searching(text, pageNumber);

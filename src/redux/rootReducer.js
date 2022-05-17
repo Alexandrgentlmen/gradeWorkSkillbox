@@ -4,6 +4,7 @@ import { imagesReducer } from './imagesReducer';
 import { userReducer } from './userReducer';
 import { modalReducer } from './modalReducer';
 import { tokenReducer } from './tokenReducer';
+import { currentPageReducer } from './currentPageReducer';
 
 
 export const rootReducer = combineReducers({
@@ -12,4 +13,5 @@ export const rootReducer = combineReducers({
 	userReducer,
 	modalReducer,
 	tokenReducer,
+	currentPageReducer,
 })
