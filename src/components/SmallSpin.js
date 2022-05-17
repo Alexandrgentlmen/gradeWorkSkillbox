@@ -4,7 +4,7 @@ import { TailSpin } from 'react-loader-spinner';
 const SmallSpin = () => {
 	const spin = useSelector(state => state.appReducer.smallerloading);
 	return (
-		<div className='loader-styles-mini'>
+		<div className='loader-styles'>
 			<TailSpin
 				type="TailSpin"
 				heigth={95}
