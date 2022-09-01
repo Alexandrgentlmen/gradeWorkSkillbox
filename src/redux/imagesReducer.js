@@ -15,19 +15,6 @@ export const imagesReducer = (state = initialState, action) => {
 				...state,
 				images: [...state.images, ...action.imagesData],
 			}
-		case SINGLE_IMAGES_LOAD:
-
-			return {
-				...state,
-				images: [action.imagesData],
-			}
-
-		case SINGLE_IMAGES_CLEAN:
-
-			return {
-				...state,
-				images: initialState.resetImage,
-			}
 
 		case CHANGE_IMAGES_STATE:
 			return {

@@ -14,6 +14,14 @@ body {
 	z-index: 999999;
 }
 
+.loader-styles-mini {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 999999;
+}
+
 .header {
 	max-width: 1400px;
 	margin: 0 auto;

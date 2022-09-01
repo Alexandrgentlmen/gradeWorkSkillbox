@@ -2,6 +2,7 @@ import { ERROR_DISPLAY_OFF, ERROR_DISPLAY_ON, FETCH_OFF, FETCH_ON, LOADER_DISPLA
 
 const initialState = {
 	loading: false,
+	smallerloading: false,
 	error: null,
 	isFetch: false,
 }

@@ -22,10 +22,11 @@ function Home() {
 	const searchText = useSelector(state => state.imagesReducer.searchText);
 
 	useEffect(() => {
-		dispatch(fetchingOff());
+		
 		dispatch(imagesLoad(searchText, pageNumber));
 	}, [searchText, pageNumber, dispatch]);
 
+	useEffect(()=>{})
 	const fetchImages = () => {
 		dispatch(changePage());
 	}
