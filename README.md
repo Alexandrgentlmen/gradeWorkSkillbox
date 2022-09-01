@@ -1,5 +1,5 @@
 
-# Project Title
+# React Skillbox 
 
 This is my thesis on web development courses. Took courses in the company Skillbox. 
 My teacher was Maksim Leskin - react / redux curator.
